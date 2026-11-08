@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="ml">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>എന്റെ നാട് | Ende Nadu</title>
+<meta name="description" content="എന്റെ നാട് (@ende.nadu): ഞങ്ങളുടെ നാട്ടിലെ സാധാരണക്കാരുടെ കഥകൾ, ഹൃദയം തൊടുന്ന മലയാളം അനിമേഷൻ കഥകളായി. Heartwarming Malayalam animated stories from Kerala.">
+<meta name="theme-color" content="#28305a">
+<link rel="canonical" href="https://endenadu.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="എന്റെ നാട് | Ende Nadu">
+<meta property="og:title" content="എന്റെ നാട് | Ende Nadu">
+<meta property="og:description" content="ഞങ്ങളുടെ നാട്ടിലെ സാധാരണക്കാരുടെ കഥകൾ. Heartwarming Malayalam animated stories from Kerala.">
+<meta property="og:url" content="https://endenadu.github.io/">
+<meta property="og:image" content="https://endenadu.github.io/og-card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="എന്റെ നാട്: സന്ധ്യയിലെ ഗ്രാമത്തിന് മുകളിൽ ലോഗോയും പേരും">
+<meta property="og:locale" content="ml_IN">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" href="favicon.png" sizes="64x64">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manjari:wght@400;700&display=swap">
+<style>
+:root {
+  /* one look on purpose, the dusk village of the logo, so it is dark in every theme */
+  color-scheme: dark;
+  /* the colours of the page's logo: the village at the last moment of sunset */
+  --night: #28305a;
+  --bg: #1f2546;
+  --violet: #4f5282;
+  --rose: #9c8199;
+  --peach: #d9a891;
+  --pale-gold: #f3d3a6;
+  --cream: #fbf1dc;
+  --gold: #f0c062;
+  --outline: #262848;
+  --ring: #e2c27e;
+  --text: #f4ead8;
+  --text-2: #e2d8c8;
+  --muted: #c4b2a6;
+  --card-line: rgba(226, 194, 126, .24);
+  /* Manjari keeps the joined letters (ക്ക, ച്ച, ന്റ) whole; Baloo Chettan 2 split them */
+  --display: "Manjari", "Noto Sans Malayalam", system-ui, sans-serif;
+  --body: "Manjari", "Noto Sans Malayalam", system-ui, sans-serif;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--body); line-height: 1.6; }
+img { display: block; max-width: 100%; }
+p { margin: 0; }
+
+/* ---------- top: the village at dusk ---------- */
+.hero {
+  --band: clamp(230px, 20.83vw, 420px);
+  position: relative; overflow: hidden; isolation: isolate; text-align: center;
+  padding-block: 44px calc(var(--band) + 10px);
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  /* the setting sun's glow sits in the background, so it fades across the village's edge instead of being cut by it */
+  background:
+    radial-gradient(circle at 50% calc(100% - var(--band) * .607), rgba(255, 242, 196, .62) 0, rgba(255, 242, 196, .26) calc(var(--band) * .3), rgba(255, 242, 196, 0) calc(var(--band) * .72)),
+    linear-gradient(180deg, #28305a 0%, #343b6a 22%, #4f5282 44%, #84739a 60%, #9c8199 68%, #d9a891 80%, #f3d3a6 92%);
+}
+.hero .sky, .hero .village { position: absolute; left: 0; width: 100%; z-index: -1; pointer-events: none; }
+.hero .sky { top: 0; height: 100%; }
+.hero .village { bottom: 0; height: var(--band); }
+.tw { animation: tw 4.5s ease-in-out infinite; }
+@keyframes tw { 0%, 100% { opacity: .95; } 50% { opacity: .35; } }
+
+.logo {
+  width: 140px; height: 140px; margin: 0 auto 18px; border-radius: 50%;
+  box-shadow: 0 0 0 5px rgba(240, 192, 98, .14), 0 12px 34px rgba(18, 16, 48, .38);
+}
+h1 {
+  margin: 0; font-family: var(--display); font-weight: 700; font-size: 52px; line-height: 1.12;
+  text-shadow:
+    3px 0 0 var(--outline), -3px 0 0 var(--outline), 0 3px 0 var(--outline), 0 -3px 0 var(--outline),
+    2px 2px 0 var(--outline), -2px 2px 0 var(--outline), 2px -2px 0 var(--outline), -2px -2px 0 var(--outline),
+    0 5px 0 var(--outline), 0 12px 26px rgba(20, 18, 50, .55);
+}
+h1 .a { color: var(--cream); }
+h1 .b { color: var(--gold); }
+.handle {
+  margin-top: 8px; font-family: var(--display); font-weight: 700; font-size: 15px; letter-spacing: 1.5px;
+  color: var(--pale-gold); text-shadow: 0 1px 2px rgba(38, 40, 72, .7);
+}
+.tagline {
+  max-width: 22em; margin: 18px auto 0; font-size: 20px; font-weight: 700; line-height: 1.5; color: var(--cream); text-wrap: balance;
+  text-shadow: 0 1px 2px rgba(38, 40, 72, .75), 0 0 18px rgba(38, 40, 72, .4);
+}
+.sub { margin-top: 4px; font-size: 16px; color: #f6ecdd; text-shadow: 0 1px 2px rgba(38, 40, 72, .7); text-wrap: balance; }
+.hero .btn { margin-top: 22px; }
+.also { margin-top: 14px; font-size: 15px; font-weight: 700; text-shadow: 0 1px 2px rgba(38, 40, 72, .7); }
+.also a { display: inline-flex; align-items: center; gap: 7px; color: var(--cream); text-decoration: underline; text-underline-offset: 4px; text-decoration-color: rgba(251, 241, 220, .55); }
+.also svg { width: 17px; height: 17px; flex: none; margin-top: -2px; }
+
+/* ---------- buttons ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  padding: 14px 24px 12px; border-radius: 999px; text-decoration: none;
+  font-family: var(--display); font-weight: 700; font-size: 18px; line-height: 1.1; color: var(--outline);
+  background: linear-gradient(180deg, #f8d684 0%, #f0c062 55%, #e3aa47 100%);
+  box-shadow: 0 8px 22px rgba(20, 16, 40, .38), inset 0 1px 0 rgba(255, 255, 255, .55), inset 0 -2px 0 rgba(120, 80, 20, .25);
+}
+.btn svg { width: 21px; height: 21px; flex: none; margin-top: -2px; }
+.btn:active { transform: translateY(1px); }
+.btn:focus-visible, .cover:focus-visible, .foot a:focus-visible { outline: 3px solid var(--cream); outline-offset: 3px; }
+
+/* ---------- section titles ---------- */
+.sec-head { max-width: 640px; margin: 0 auto 24px; text-align: center; }
+.sec-head h2 { margin: 0; font-family: var(--display); font-weight: 700; font-size: 32px; line-height: 1.2; color: var(--cream); text-wrap: balance; }
+.sec-head h2::after {
+  content: ""; display: block; width: 84px; height: 4px; margin: 10px auto 0; border-radius: 4px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+.sec-head p { margin-top: 10px; font-size: 16px; color: var(--muted); text-wrap: balance; }
+
+/* ---------- the stories ---------- */
+.stories {
+  padding-block: 30px 56px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 360px)); justify-content: center;
+  gap: 24px; max-width: 1140px; margin: 0 auto;
+}
+.card {
+  display: flex; flex-direction: column; overflow: hidden; min-width: 0;
+  background: linear-gradient(180deg, #2a3262, #232a52); border: 1px solid var(--card-line); border-radius: 22px;
+  box-shadow: 0 18px 44px rgba(10, 12, 32, .38);
+}
+.cover { position: relative; display: block; aspect-ratio: 3 / 4; background: #1a2040; }
+.cover img { width: 100%; height: 100%; object-fit: cover; }
+.dur {
+  position: absolute; left: 12px; bottom: 12px; display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 12px 6px 9px; border-radius: 999px; font: 700 14px/1 system-ui, "Segoe UI", sans-serif;
+  color: var(--cream); background: rgba(31, 37, 70, .72); border: 1px solid rgba(251, 241, 220, .35);
+}
+.dur svg { width: 14px; height: 14px; }
+.body { display: flex; flex: 1; flex-direction: column; gap: 10px; padding: 18px 18px 20px; }
+.new {
+  align-self: flex-start; margin-bottom: -2px; padding: 5px 13px 3px; border-radius: 999px;
+  font-family: var(--display); font-weight: 700; font-size: 14px; line-height: 1.25;
+  color: var(--outline); background: var(--gold);
+}
+.body h3 { margin: 0; font-family: var(--display); font-weight: 700; font-size: 27px; line-height: 1.25; color: var(--cream); text-wrap: balance; }
+.line { font-size: 17px; line-height: 1.7; color: var(--text-2); }
+.en { font: 14.5px/1.55 system-ui, "Segoe UI", Roboto, sans-serif; color: var(--muted); }
+.body .btn { align-self: flex-start; margin-top: auto; padding: 12px 20px 10px; font-size: 17px; }
+.body .btn svg { width: 17px; height: 17px; }
+
+/* ---------- about ---------- */
+.about {
+  padding-block: 8px 64px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.about-box {
+  max-width: 720px; margin: 0 auto; padding: 32px 22px 34px; text-align: center;
+  border: 1px solid var(--card-line); border-radius: 26px;
+  background: radial-gradient(120% 90% at 50% 0%, rgba(156, 129, 153, .24), rgba(79, 82, 130, .1) 55%, rgba(31, 37, 70, 0) 100%), #222a50;
+}
+.about-box .sec-head { margin-bottom: 18px; }
+.about-box p { margin-top: 12px; font-size: 18px; line-height: 1.85; color: var(--text-2); text-wrap: pretty; }
+.about-box .follow-line { margin-top: 26px; font-size: 16px; color: var(--muted); }
+.about-box .links { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 12px; }
+.btn.alt {
+  color: var(--cream); background: transparent; border: 2px solid rgba(251, 241, 220, .7);
+  box-shadow: none; padding: 12px 22px 10px;
+}
+
+/* ---------- footer ---------- */
+.foot {
+  padding-block: 34px 42px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  text-align: center; background: #191e3a; border-top: 1px solid rgba(226, 194, 126, .14); }
+.foot .mark { width: 240px; height: 60px; margin: 0 auto; opacity: .92; }
+.foot p { margin-top: 10px; font-size: 15px; color: var(--muted); }
+.foot a { color: var(--pale-gold); text-decoration: none; }
+.foot .foot-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 20px; }
+.foot .copy { margin-top: 6px; font-size: 14px; opacity: .8; }
+
+@media (min-width: 900px) {
+  .hero { padding-top: 64px; }
+  .logo { width: 170px; height: 170px; }
+  h1 { font-size: 72px; }
+  .handle { font-size: 16px; }
+  .tagline { font-size: 23px; }
+  .sub { font-size: 17px; }
+  .sec-head h2 { font-size: 40px; }
+  .about-box { padding: 40px 48px 44px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tw { animation: none; }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <svg class="sky" viewBox="0 0 1440 760" preserveAspectRatio="xMidYMin slice" aria-hidden="true"></svg>
+  <svg class="village" viewBox="0 0 1440 300" preserveAspectRatio="xMidYMax slice" aria-hidden="true"></svg>
+  <img class="logo" src="logo.jpg" width="600" height="600" alt="എന്റെ നാട് ലോഗോ">
+  <h1><span class="a">എന്റെ</span> <span class="b">നാട്</span></h1>
+  <p class="handle">Ende Nadu · @ende.nadu</p>
+  <p class="tagline">ഞങ്ങളുടെ നാട്ടിലെ സാധാരണക്കാരുടെ കഥകൾ</p>
+  <p class="sub">ഹൃദയം തൊടുന്ന മലയാളം അനിമേഷൻ കഥകൾ</p>
+  <a class="btn" href="https://www.instagram.com/ende.nadu/" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.2" fill="currentColor" stroke="none"/></svg>
+    Instagram-ൽ ഫോളോ ചെയ്യൂ
+  </a>
+  <p class="also"><a href="https://www.facebook.com/ende.nadu" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8.5V6.8c0-.8.5-1.3 1.4-1.3H17V2.3c-.6-.1-1.6-.2-2.6-.2-2.7 0-4.4 1.6-4.4 4.5v1.9H7.3v3.4H10V22h4V11.9h2.8l.4-3.4z" fill="currentColor"/></svg>Facebook-ലും കാണാം</a></p>
+</header>
+
+<main>
+  <section class="stories" aria-labelledby="kathakal">
+    <div class="sec-head">
+      <h2 id="kathakal">നാട്ടിലെ കഥകൾ</h2>
+      <p>ഓരോ കഥയും ഒന്നര മിനിറ്റോളം. കാണാൻ കവറിൽ തൊടൂ.</p>
+    </div>
+
+    <div class="grid">
+
+      <!-- 06: the reel's own link isn't known yet, so it opens the page -->
+      <article class="card">
+        <a class="cover" href="https://www.instagram.com/ende.nadu/" target="_blank" rel="noopener" aria-label="നീക്കിവെച്ചത്: Instagram-ൽ കാണൂ">
+          <img src="cover-06.jpg" width="720" height="960" alt="നീക്കിവെച്ചത് എന്ന കഥയുടെ കവർ" decoding="async">
+          <span class="dur"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12.5-7.5z" fill="currentColor"/></svg>1:39</span>
+        </a>
+        <div class="body">
+          <p class="new">പുതിയ കഥ</p>
+          <h3>നീക്കിവെച്ചത്</h3>
+          <p class="line">ഗൾഫിൽ കാശുണ്ടായിട്ടും ബൈക്ക് വാങ്ങിത്തരാത്ത അച്ഛനെ അവൻ ആറു കൊല്ലം വിളിച്ചില്ല. അച്ഛന്റെ എക്സ്ചേഞ്ചിലെ കൗണ്ടറിൽ അവൻ അറിഞ്ഞത് എന്തായിരുന്നു?</p>
+          <p class="en" lang="en">He stopped calling his father, a driver in Dubai, over a bike he never got. Six years later, at the same exchange counter, he learned where the money had gone.</p>
+          <a class="btn" href="https://www.instagram.com/ende.nadu/" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12.5-7.5z" fill="currentColor"/></svg>
+            Instagram-ൽ കാണൂ
+          </a>
+        </div>
+      </article>
+
+      <article class="card">
+        <a class="cover" href="https://www.instagram.com/ende.nadu/reel/DfdEiXGtLiU/" target="_blank" rel="noopener" aria-label="ഉറങ്ങിപ്പോയി: Instagram-ൽ കാണൂ">
+          <img src="cover-05.jpg" width="720" height="960" alt="ഉറങ്ങിപ്പോയി എന്ന കഥയുടെ കവർ" loading="lazy" decoding="async">
+          <span class="dur"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12.5-7.5z" fill="currentColor"/></svg>1:33</span>
+        </a>
+        <div class="body">
+          <h3>ഉറങ്ങിപ്പോയി</h3>
+          <p class="line">ആ രാത്രി ചെണ്ട വഴിയിലിട്ട് അയാൾ ഓടിയത് എന്തിനായിരുന്നു? പിറ്റേന്ന് നാട് മുഴുവൻ വഴക്കു പറഞ്ഞപ്പോൾ അയാൾ പറഞ്ഞത് ഒരൊറ്റ വാക്ക്.</p>
+          <p class="en" lang="en">One Ramadan night a village drummer dropped his drum to carry a sick child four kilometres, and told no one why. Forty years later, the child's old mother walked the lanes for him.</p>
+          <a class="btn" href="https://www.instagram.com/ende.nadu/reel/DfdEiXGtLiU/" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12.5-7.5z" fill="currentColor"/></svg>
+            Instagram-ൽ കാണൂ
+          </a>
+        </div>
+      </article>
+
+      <article class="card">
+        <a class="cover" href="https://www.instagram.com/ende.nadu/reel/DfcVANRNEYc/" target="_blank" rel="noopener" aria-label="ഒരു രൂപ: Instagram-ൽ കാണൂ">
+          <img src="cover-04.jpg" width="720" height="960" alt="ഒരു രൂപ എന്ന കഥയുടെ കവർ" loading="lazy" decoding="async">
+          <span class="dur"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12.5-7.5z" fill="currentColor"/></svg>1:26</span>
+        </a>
+        <div class="body">
+          <h3>ഒരു രൂപ</h3>
+          <p class="line">എട്ടാം വയസ്സിൽ ഞാനൊരു കള്ളനായിരുന്നു. പക്ഷേ എന്നെക്കാൾ വലിയൊരു കള്ളൻ ആ വീട്ടിലുണ്ടായിരുന്നു. ആരായിരുന്നു അത്?</p>
+          <p class="en" lang="en">Every night an eight-year-old stole one rupee from his father's shirt. Thirty years later, a coin rolled across the floor and told him who the real thief was.</p>
+          <a class="btn" href="https://www.instagram.com/ende.nadu/reel/DfcVANRNEYc/" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12.5-7.5z" fill="currentColor"/></svg>
+            Instagram-ൽ കാണൂ
+          </a>
+        </div>
+      </article>
+
+      <article class="card">
+        <a class="cover" href="https://www.instagram.com/ende.nadu/reel/Dfb8OOZNmUt/" target="_blank" rel="noopener" aria-label="തണുത്ത ചായ: Instagram-ൽ കാണൂ">
+          <img src="cover-03.jpg" width="720" height="960" alt="തണുത്ത ചായ എന്ന കഥയുടെ കവർ" loading="lazy" decoding="async">
+          <span class="dur"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12.5-7.5z" fill="currentColor"/></svg>1:24</span>
+        </a>
+        <div class="body">
+          <h3>തണുത്ത ചായ</h3>
+          <p class="line">“നിന്നെ കാത്തുനിന്നതല്ല, ചായ കുടിക്കാൻ വന്നതാ.” മൂന്നു കൊല്ലം അച്ഛൻ പറഞ്ഞ ആ കള്ളത്തിന്റെ സത്യം മീര അറിഞ്ഞത് പതിനഞ്ചു കൊല്ലം കഴിഞ്ഞാണ്. ആരാണ് അവളോട് പറഞ്ഞത്?</p>
+          <p class="en" lang="en">Every night he stood at the bus stop with a glass of tea and said he had only come for tea. Fifteen years later, she learned he had never drunk a drop.</p>
+          <a class="btn" href="https://www.instagram.com/ende.nadu/reel/Dfb8OOZNmUt/" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12.5-7.5z" fill="currentColor"/></svg>
+            Instagram-ൽ കാണൂ
+          </a>
+        </div>
+      </article>
+
+      <article class="card">
+        <a class="cover" href="https://www.instagram.com/ende.nadu/reel/DfbgJ8BtUYN/" target="_blank" rel="noopener" aria-label="ഗേറ്റ് വരെ: Instagram-ൽ കാണൂ">
+          <img src="cover-02.jpg" width="720" height="960" alt="ഗേറ്റ് വരെ എന്ന കഥയുടെ കവർ" loading="lazy" decoding="async">
+          <span class="dur"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12.5-7.5z" fill="currentColor"/></svg>1:20</span>
+        </a>
+        <div class="body">
+          <h3>ഗേറ്റ് വരെ</h3>
+          <p class="line">മീൻപെട്ടിയുള്ള അച്ഛന്റെ സ്കൂട്ടർ കണ്ട് നാണിച്ച മകൻ പറഞ്ഞു: “ഗേറ്റിനു മുന്നിൽ ഇറക്കണ്ട.” രണ്ടു കൊല്ലം കഴിഞ്ഞ് ഹെഡ്മാസ്റ്റർ മൈക്കിലൂടെ പറഞ്ഞത് എന്തായിരുന്നു?</p>
+          <p class="en" lang="en">A boy asked his father, a fish seller, to stop the scooter at the bend before the school gate. Two years later, the headmaster told the whole hall what he had seen.</p>
+          <a class="btn" href="https://www.instagram.com/ende.nadu/reel/DfbgJ8BtUYN/" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12.5-7.5z" fill="currentColor"/></svg>
+            Instagram-ൽ കാണൂ
+          </a>
+        </div>
+      </article>
+
+      <!-- 01: the remade reel's own link isn't known yet, so it opens the page -->
+      <article class="card">
+        <a class="cover" href="https://www.instagram.com/ende.nadu/" target="_blank" rel="noopener" aria-label="വലുതാകുമ്പോൾ തന്നാൽ മതി: Instagram-ൽ കാണൂ">
+          <img src="cover-01.jpg" width="720" height="960" alt="വലുതാകുമ്പോൾ തന്നാൽ മതി എന്ന കഥയുടെ കവർ" loading="lazy" decoding="async">
+          <span class="dur"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12.5-7.5z" fill="currentColor"/></svg>1:19</span>
+        </a>
+        <div class="body">
+          <h3>വലുതാകുമ്പോൾ തന്നാൽ മതി</h3>
+          <p class="line">മുപ്പത്തഞ്ച് കൊല്ലം കുട്ടികളുടെ യൂണിഫോമിന് കാശ് ചോദിക്കാത്ത അബ്ദുക്ക, കണ്ണിന്റെ ഓപ്പറേഷന് തയ്യൽ മെഷീൻ വിറ്റു. ആശുപത്രിയിൽ ഡോക്ടർ ആ മുഖം കണ്ടപ്പോൾ എന്തുണ്ടായി?</p>
+          <p class="en" lang="en">For thirty-five years a village tailor stitched school uniforms and told every child, “Pay me when you grow up.” Then his eyes began to fail.</p>
+          <a class="btn" href="https://www.instagram.com/ende.nadu/" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12.5-7.5z" fill="currentColor"/></svg>
+            Instagram-ൽ കാണൂ
+          </a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="about" aria-labelledby="about-h">
+    <div class="about-box">
+      <div class="sec-head">
+        <h2 id="about-h">എന്റെ നാടിനെക്കുറിച്ച്</h2>
+      </div>
+      <p>ചായക്കടയിലെ ബെഞ്ചിലും സ്കൂൾ ഗേറ്റിനു മുമ്പുള്ള വളവിലും ഗൾഫിലെ ഒരു ക്യൂവിലും ആരും പറയാതെ പോകുന്ന കഥകളുണ്ട്. ഒരച്ഛന്റെ മൗനം, ഒരു തയ്യൽക്കാരന്റെ നന്മ, ഒരു നാടിന്റെ സ്നേഹം.</p>
+      <p>അങ്ങനെയുള്ള കഥകൾ വരച്ച ചിത്രങ്ങളിലൂടെ, പതിയെ, ഒന്നര മിനിറ്റിൽ പറയുകയാണ് എന്റെ നാട്.</p>
+      <p>കണ്ടുകഴിയുമ്പോൾ ആരെയെങ്കിലും ഓർമ്മ വന്നാൽ, ആ കഥ അവർക്ക് അയച്ചുകൊടുക്കൂ.</p>
+      <p class="follow-line">പുതിയ കഥകൾ ആദ്യം കാണാൻ</p>
+      <div class="links">
+        <a class="btn" href="https://www.instagram.com/ende.nadu/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.2" fill="currentColor" stroke="none"/></svg>
+          Instagram-ൽ ഫോളോ ചെയ്യൂ
+        </a>
+        <a class="btn alt" href="https://www.facebook.com/ende.nadu" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8.5V6.8c0-.8.5-1.3 1.4-1.3H17V2.3c-.6-.1-1.6-.2-2.6-.2-2.7 0-4.4 1.6-4.4 4.5v1.9H7.3v3.4H10V22h4V11.9h2.8l.4-3.4z" fill="currentColor"/></svg>
+          Facebook
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <img class="mark" src="mark.png" width="480" height="120" alt="@ende.nadu">
+  <p class="foot-links"><a href="https://www.instagram.com/ende.nadu/" target="_blank" rel="noopener">instagram.com/ende.nadu</a><a href="https://www.facebook.com/ende.nadu" target="_blank" rel="noopener">facebook.com/ende.nadu</a></p>
+  <p class="copy">Kerala, India</p>
+  <p class="copy">© 2026 എന്റെ നാട്&ensp;|&ensp;Ende Nadu</p>
+</footer>
+
+<script>
+// The sky and the village are drawn here in the logo's own shapes and colours (Brand\profile4.html):
+// a dusk sky with stars coming out, a thin moon and birds flying home, then hills, palms, lamp-lit huts and a path.
+(() => {
+  const P = {
+    hillFar: '#7d8b80', hillMid: '#4f6b5a', hillNear: '#3a5347', path: '#ad7b5e',
+    frond: ['#2e4a3e', '#38584a', '#436553'], trunk: '#5a4636', paddy: '#4c6650', paddyLine: '#6c8a6c',
+    hut: { wall: '#e2d2b6', base: '#7a5a46', door: '#4a3428', window: '#ffd27a', roof: '#a3814f', line: '#6b5234' }
+  };
+  const hut = (x, y, s, flip) => {
+    const f = flip ? -1 : 1, p = P.hut;
+    return `<g transform="translate(${x} ${y}) scale(${s * f} ${s})">
+      <rect x="-52" y="-6" width="104" height="60" fill="${p.wall}"/>
+      <rect x="-52" y="42" width="104" height="12" fill="${p.base}"/>
+      <rect x="-14" y="8" width="28" height="46" fill="${p.door}"/>
+      <rect x="24" y="8" width="20" height="20" fill="${p.window}"/>
+      <path d="M-80 4 L-46 -50 Q0 -56 46 -50 L80 4 Q0 14 -80 4Z" fill="${p.roof}"/>
+      <path d="M-46 -50 Q0 -56 46 -50" fill="none" stroke="${p.line}" stroke-width="7" stroke-linecap="round"/>
+      <path d="M-62 -4 L-38 -44 M-36 2 L-20 -46 M-10 6 L-4 -48 M14 6 L8 -48 M38 2 L22 -46 M62 -4 L40 -44" fill="none" stroke="${p.line}" stroke-width="3.5" stroke-linecap="round"/>
+    </g>`;
+  };
+  const palm = (x, y, s, flip) => {
+    const f = flip ? -1 : 1;
+    const fronds = [-160, -128, -98, -66, -34, -6, 22].map((a, i) =>
+      `<g transform="rotate(${a})"><path d="M0 0 C80 -40 190 -40 290 12 C190 -6 90 -2 0 0Z" fill="${P.frond[i % 3]}"/></g>`).join('');
+    return `<g transform="translate(${x} ${y}) scale(${s * f} ${s})">
+      <path d="M-14 560 C-6 380 8 190 -8 0 L12 0 C26 190 18 380 16 560Z" fill="${P.trunk}"/>${fronds}</g>`;
+  };
+  const cloud = (x, y, s, body, light) => `<g transform="translate(${x} ${y}) scale(${s})">
+    <path d="M-150 34 Q-176 34 -176 10 Q-176 -14 -146 -14 Q-140 -48 -96 -46 Q-76 -86 -26 -78 Q18 -106 56 -70 Q104 -78 118 -36 Q168 -36 170 6 Q170 34 142 34Z" fill="${body}"/>
+    <path d="M-122 -18 Q-110 -40 -84 -36 M-36 -62 Q-6 -82 26 -60 M70 -52 Q96 -52 104 -28" fill="none" stroke="${light}" stroke-width="9" stroke-linecap="round"/>
+    <path d="M-150 34 Q0 16 142 34Z" fill="${light}" opacity=".35"/></g>`;
+  const bird = (x, y, s, r) => `<path d="M${x - 24 * s} ${y + 3 * s} Q${x - 12 * s} ${y - 13 * s} ${x} ${y} Q${x + 12 * s} ${y - 13 * s} ${x + 24 * s} ${y + 3 * s}" fill="none" stroke="#262848" stroke-width="${4.6 * s}" stroke-linecap="round" stroke-linejoin="round" transform="rotate(${r} ${x} ${y})"/>`;
+
+  const HIGH = ['#5c5d8a', '#9a95bd'], MID = ['#8f7a9c', '#d7b2ad'], LOW = ['#cf9d92', '#f6d8bd'];
+  const starAt = [[60, 40, 2.4], [180, 150, 1.8], [300, 60, 2.2], [420, 210, 1.6], [470, 95, 2.6], [540, 36, 1.8], [610, 250, 1.5],
+    [655, 175, 2.1], [760, 28, 1.7], [790, 262, 1.6], [870, 92, 2.3], [990, 150, 1.8], [1010, 40, 2.4], [1080, 230, 1.6],
+    [1150, 180, 2.2], [1240, 30, 1.8], [1300, 140, 2.5], [1390, 70, 1.9], [1360, 250, 1.6], [120, 260, 1.7], [250, 330, 1.5],
+    [1220, 320, 1.5], [940, 290, 1.6], [520, 300, 1.6]];
+  const stars = starAt.map(([x, y, r], i) =>
+    `<circle class="tw" style="animation-delay:${((i * 0.37) % 4).toFixed(2)}s" cx="${x}" cy="${y}" r="${r}" fill="#fff4d0"/>`).join('');
+  const moon = `<g transform="translate(565 118)"><mask id="moonCut"><circle r="22" fill="#fff"/><circle cx="-9" cy="-7" r="20" fill="#000"/></mask><circle r="22" fill="#f6efd8" mask="url(#moonCut)"/></g>`;
+  const birds = [[852, 170, .8, -6], [902, 152, .62, 4], [816, 198, .55, -2], [930, 184, .5, 8], [875, 208, .42, 3]].map(b => bird(...b)).join('');
+
+  document.querySelector('.hero .sky').innerHTML =
+    stars + moon + cloud(240, 110, .55, ...HIGH) + cloud(1200, 80, .6, ...HIGH) + cloud(915, 40, .3, ...HIGH) +
+    cloud(160, 330, .5, ...MID) + cloud(1290, 300, .5, ...MID) + birds;
+
+  document.querySelector('.hero .village').innerHTML = `
+    <defs>
+      <linearGradient id="toNight" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1f2546" stop-opacity="0"/><stop offset=".8" stop-color="#1f2546"/></linearGradient>
+    </defs>
+    <circle cx="720" cy="118" r="44" fill="#fbe6b8"/>
+    ${cloud(300, 66, .5, ...LOW)}${cloud(1150, 58, .55, ...LOW)}${cloud(905, 72, .26, ...LOW)}
+    <path d="M-20 118 Q180 82 400 108 T820 100 T1240 104 T1660 98 V300 H-20Z" fill="${P.hillFar}"/>
+    <path d="M-20 118 Q180 82 400 108 T820 100 T1240 104 T1660 98" fill="none" stroke="#f6d8b0" stroke-width="3" opacity=".45"/>
+    ${palm(170, 78, .3)}${palm(1290, 74, .3, 1)}${palm(505, 92, .25)}${palm(950, 86, .26, 1)}${palm(380, 112, .19)}${palm(1085, 106, .19, 1)}
+    <path d="M-20 170 Q260 128 560 158 T1160 150 T1760 160 V300 H-20Z" fill="${P.hillMid}"/>
+    <path d="M-20 170 Q260 128 560 158 T1160 150 T1760 160" fill="none" stroke="#f0cfa6" stroke-width="2.5" opacity=".3"/>
+    ${hut(250, 182, .52)}${hut(608, 178, .5)}${hut(858, 172, .5, 1)}${hut(1200, 178, .52, 1)}
+    <path d="M-20 222 Q300 196 620 214 T1260 206 T1900 214 V300 H-20Z" fill="${P.hillNear}"/>
+    <path d="M690 300 C684 268 742 254 718 232 C704 220 724 210 720 200 L724 200 C731 211 714 220 730 232 C760 255 718 270 742 300Z" fill="${P.path}"/>
+    ${hut(330, 248, .7)}${hut(560, 242, .7)}${hut(872, 238, .7, 1)}${hut(1120, 246, .7, 1)}
+    <path d="M-20 284 Q720 262 1460 284 V300 H-20Z" fill="${P.paddy}"/>
+    <path d="M-20 290 Q720 270 1460 290" fill="none" stroke="${P.paddyLine}" stroke-width="2.5"/>
+    <rect x="-20" y="258" width="1480" height="44" fill="url(#toNight)"/>`;
+})();
+</script>
+</body>
+</html>
