@@ -92,10 +92,11 @@ h1 .b { color: var(--gold); }
   text-shadow: 0 1px 2px rgba(38, 40, 72, .75), 0 0 18px rgba(38, 40, 72, .4);
 }
 .sub { margin-top: 4px; font-size: 16px; color: #f6ecdd; text-shadow: 0 1px 2px rgba(38, 40, 72, .7); text-wrap: balance; }
-.hero .btn { margin-top: 22px; }
-.also { margin-top: 14px; font-size: 15px; font-weight: 700; text-shadow: 0 1px 2px rgba(38, 40, 72, .7); }
-.also a { display: inline-flex; align-items: center; gap: 7px; color: var(--cream); text-decoration: underline; text-underline-offset: 4px; text-decoration-color: rgba(251, 241, 220, .55); }
-.also svg { width: 17px; height: 17px; flex: none; margin-top: -2px; }
+/* Instagram, then Facebook, then YouTube, one under the other in the same gold (the user, 2026-11-09);
+   the icons line up on the left and each name sits in the middle; the size keeps the longest (YouTube) on one line from 360 px up */
+.follow { display: flex; flex-direction: column; gap: 12px; width: min(100%, 380px); margin: 24px auto 0; }
+.follow .btn { position: relative; padding-inline: 44px; text-align: center; font-size: clamp(14.5px, 4.1vw, 18px); }
+.follow .btn svg { position: absolute; left: 16px; top: calc(50% - 11.5px); margin-top: 0; }
 
 /* ---------- buttons ---------- */
 .btn {
@@ -107,7 +108,7 @@ h1 .b { color: var(--gold); }
 }
 .btn svg { width: 21px; height: 21px; flex: none; margin-top: -2px; }
 .btn:active { transform: translateY(1px); }
-.btn:focus-visible, .cover:focus-visible, .foot a:focus-visible { outline: 3px solid var(--cream); outline-offset: 3px; }
+.btn:focus-visible, .cover:focus-visible, .watch-row a:focus-visible, .foot a:focus-visible { outline: 3px solid var(--cream); outline-offset: 3px; }
 
 /* ---------- section titles ---------- */
 .sec-head { max-width: 640px; margin: 0 auto 24px; text-align: center; }
@@ -149,8 +150,24 @@ h1 .b { color: var(--gold); }
 .body h3 { margin: 0; font-family: var(--display); font-weight: 700; font-size: 27px; line-height: 1.25; color: var(--cream); text-wrap: balance; }
 .line { font-size: 17px; line-height: 1.7; color: var(--text-2); }
 .en { font: 14.5px/1.55 system-ui, "Segoe UI", Roboto, sans-serif; color: var(--muted); }
-.body .btn { align-self: flex-start; margin-top: auto; padding: 12px 20px 10px; font-size: 17px; }
-.body .btn svg { width: 17px; height: 17px; }
+/* where to watch each story: Instagram, Facebook and YouTube, each opening that story's own video (the user, 2026-11-09) */
+.watch { margin-top: auto; padding-top: 4px; }
+.watch-label { display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 700; color: var(--muted); }
+.watch-label::before, .watch-label::after { content: ""; flex: 1; height: 1px; background: var(--card-line); }
+.watch-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 10px; }
+.watch-row a {
+  display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 12px 4px 10px; border-radius: 16px;
+  font-family: var(--display); font-weight: 700; font-size: 14px; line-height: 1.1; color: var(--cream); text-decoration: none;
+  background: rgba(251, 241, 220, .06); border: 1px solid rgba(226, 194, 126, .28);
+  transition: background-color .15s, border-color .15s, transform .15s;
+}
+.watch-row a:hover { background: rgba(251, 241, 220, .12); border-color: rgba(240, 192, 98, .6); }
+.watch-row a:active { transform: translateY(1px); }
+.ic { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; color: #fff; box-shadow: 0 6px 14px rgba(8, 10, 30, .35); }
+.ic svg { width: 21px; height: 21px; }
+.ic.ig { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%); }
+.ic.fb { background: #1877f2; }
+.ic.yt { background: #ff0000; }
 
 /* ---------- about ---------- */
 .about {
@@ -193,10 +210,18 @@ h1 .b { color: var(--gold); }
 }
 @media (prefers-reduced-motion: reduce) {
   .tw { animation: none; }
+  .watch-row a { transition: none; }
 }
 </style>
 </head>
 <body>
+
+<!-- the three platform marks, drawn once and used by the buttons below -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-ig" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5.5" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="17.4" cy="6.6" r="1.2" fill="currentColor"/></symbol>
+  <symbol id="i-fb" viewBox="0 0 24 24"><path d="M14 8.5V6.8c0-.8.5-1.3 1.4-1.3H17V2.3c-.6-.1-1.6-.2-2.6-.2-2.7 0-4.4 1.6-4.4 4.5v1.9H7.3v3.4H10V22h4V11.9h2.8l.4-3.4z" fill="currentColor"/></symbol>
+  <symbol id="i-yt" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M6.5 5H17.5A4.5 4.5 0 0 1 22 9.5V14.5A4.5 4.5 0 0 1 17.5 19H6.5A4.5 4.5 0 0 1 2 14.5V9.5A4.5 4.5 0 0 1 6.5 5ZM10 8.8V15.2L15.4 12Z"/></symbol>
+</svg>
 
 <header class="hero">
   <svg class="sky" viewBox="0 0 1440 760" preserveAspectRatio="xMidYMin slice" aria-hidden="true"></svg>
@@ -206,11 +231,11 @@ h1 .b { color: var(--gold); }
   <p class="handle">Ende Nadu · @ende.nadu</p>
   <p class="tagline">ഞങ്ങളുടെ നാട്ടിലെ സാധാരണക്കാരുടെ കഥകൾ</p>
   <p class="sub">ഹൃദയം തൊടുന്ന മലയാളം അനിമേഷൻ കഥകൾ</p>
-  <a class="btn" href="https://www.instagram.com/ende.nadu/" target="_blank" rel="noopener">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.2" fill="currentColor" stroke="none"/></svg>
-    Instagram-ൽ ഫോളോ ചെയ്യൂ
-  </a>
-  <p class="also"><a href="https://www.facebook.com/ende.nadu" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8.5V6.8c0-.8.5-1.3 1.4-1.3H17V2.3c-.6-.1-1.6-.2-2.6-.2-2.7 0-4.4 1.6-4.4 4.5v1.9H7.3v3.4H10V22h4V11.9h2.8l.4-3.4z" fill="currentColor"/></svg>Facebook-ലും കാണാം</a></p>
+  <nav class="follow" aria-label="എന്റെ നാട് ഫോളോ ചെയ്യാൻ">
+    <a class="btn" href="https://www.instagram.com/ende.nadu/" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-ig"/></svg>Instagram-ൽ ഫോളോ ചെയ്യൂ</a>
+    <a class="btn" href="https://www.facebook.com/ende.nadu" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-fb"/></svg>Facebook-ൽ ഫോളോ ചെയ്യൂ</a>
+    <a class="btn" href="https://www.youtube.com/@EndeNadu" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-yt"/></svg>YouTube-ൽ സബ്&zwnj;സ്ക്രൈബ് ചെയ്യൂ</a>
+  </nav>
 </header>
 
 <main>
@@ -222,10 +247,12 @@ h1 .b { color: var(--gold); }
 
     <div class="grid">
 
-      <!-- 01: posted last (the remake of the first reel, the old one was taken down), so it leads the list (the user, 2026-11-08).
-           Its own reel link isn't known yet, so it opens the page. -->
+      <!-- Links from the ende.nadu reels chat (2026-11-09). No Facebook video link is known yet, so every Facebook tile opens the page;
+           a story not yet on YouTube opens the channel. Newest story first (the user, 2026-11-08). -->
+
+      <!-- 01: posted last (the remake of the first reel, the old one was taken down), so it leads the list (the user, 2026-11-08). -->
       <article class="card">
-        <a class="cover" href="https://www.instagram.com/ende.nadu/" target="_blank" rel="noopener" aria-label="വലുതാകുമ്പോൾ തന്നാൽ മതി: Instagram-ൽ കാണൂ">
+        <a class="cover" href="https://www.instagram.com/ende.nadu/reel/Dfepbp0N5OY/" target="_blank" rel="noopener" aria-label="വലുതാകുമ്പോൾ തന്നാൽ മതി: Instagram-ൽ കാണൂ">
           <img src="cover-01.jpg" width="720" height="960" alt="വലുതാകുമ്പോൾ തന്നാൽ മതി എന്ന കഥയുടെ കവർ" decoding="async">
           <span class="dur"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12.5-7.5z" fill="currentColor"/></svg>1:19</span>
         </a>
@@ -233,16 +260,19 @@ h1 .b { color: var(--gold); }
           <h3>വലുതാകുമ്പോൾ തന്നാൽ മതി</h3>
           <p class="line">മുപ്പത്തഞ്ച് കൊല്ലം കുട്ടികളുടെ യൂണിഫോമിന് കാശ് ചോദിക്കാത്ത അബ്ദുക്ക, കണ്ണിന്റെ ഓപ്പറേഷന് തയ്യൽ മെഷീൻ വിറ്റു. ആശുപത്രിയിൽ ഡോക്ടർ ആ മുഖം കണ്ടപ്പോൾ എന്തുണ്ടായി?</p>
           <p class="en" lang="en">For thirty-five years a village tailor stitched school uniforms and told every child, “Pay me when you grow up.” Then his eyes began to fail.</p>
-          <a class="btn" href="https://www.instagram.com/ende.nadu/" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12.5-7.5z" fill="currentColor"/></svg>
-            Instagram-ൽ കാണൂ
-          </a>
+          <div class="watch">
+            <p class="watch-label">ഈ കഥ കാണാൻ</p>
+            <div class="watch-row">
+              <a href="https://www.instagram.com/ende.nadu/reel/Dfepbp0N5OY/" target="_blank" rel="noopener" aria-label="വലുതാകുമ്പോൾ തന്നാൽ മതി: Instagram-ൽ കാണൂ"><span class="ic ig"><svg aria-hidden="true"><use href="#i-ig"/></svg></span>Instagram</a>
+              <a href="https://www.facebook.com/ende.nadu" target="_blank" rel="noopener" aria-label="വലുതാകുമ്പോൾ തന്നാൽ മതി: Facebook-ൽ കാണൂ"><span class="ic fb"><svg aria-hidden="true"><use href="#i-fb"/></svg></span>Facebook</a>
+              <a href="https://www.youtube.com/@EndeNadu" target="_blank" rel="noopener" aria-label="വലുതാകുമ്പോൾ തന്നാൽ മതി: YouTube-ൽ കാണൂ"><span class="ic yt"><svg aria-hidden="true"><use href="#i-yt"/></svg></span>YouTube</a>
+            </div>
+          </div>
         </div>
       </article>
 
-      <!-- 06: the reel's own link isn't known yet, so it opens the page -->
       <article class="card">
-        <a class="cover" href="https://www.instagram.com/ende.nadu/" target="_blank" rel="noopener" aria-label="നീക്കിവെച്ചത്: Instagram-ൽ കാണൂ">
+        <a class="cover" href="https://www.instagram.com/ende.nadu/reel/DfegbgJtGX7/" target="_blank" rel="noopener" aria-label="നീക്കിവെച്ചത്: Instagram-ൽ കാണൂ">
           <img src="cover-06.jpg" width="720" height="960" alt="നീക്കിവെച്ചത് എന്ന കഥയുടെ കവർ" loading="lazy" decoding="async">
           <span class="dur"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12.5-7.5z" fill="currentColor"/></svg>1:39</span>
         </a>
@@ -251,10 +281,14 @@ h1 .b { color: var(--gold); }
           <h3>നീക്കിവെച്ചത്</h3>
           <p class="line">ഗൾഫിൽ കാശുണ്ടായിട്ടും ബൈക്ക് വാങ്ങിത്തരാത്ത അച്ഛനെ അവൻ ആറു കൊല്ലം വിളിച്ചില്ല. അച്ഛന്റെ എക്സ്ചേഞ്ചിലെ കൗണ്ടറിൽ അവൻ അറിഞ്ഞത് എന്തായിരുന്നു?</p>
           <p class="en" lang="en">He stopped calling his father, a driver in Dubai, over a bike he never got. Six years later, at the same exchange counter, he learned where the money had gone.</p>
-          <a class="btn" href="https://www.instagram.com/ende.nadu/" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12.5-7.5z" fill="currentColor"/></svg>
-            Instagram-ൽ കാണൂ
-          </a>
+          <div class="watch">
+            <p class="watch-label">ഈ കഥ കാണാൻ</p>
+            <div class="watch-row">
+              <a href="https://www.instagram.com/ende.nadu/reel/DfegbgJtGX7/" target="_blank" rel="noopener" aria-label="നീക്കിവെച്ചത്: Instagram-ൽ കാണൂ"><span class="ic ig"><svg aria-hidden="true"><use href="#i-ig"/></svg></span>Instagram</a>
+              <a href="https://www.facebook.com/ende.nadu" target="_blank" rel="noopener" aria-label="നീക്കിവെച്ചത്: Facebook-ൽ കാണൂ"><span class="ic fb"><svg aria-hidden="true"><use href="#i-fb"/></svg></span>Facebook</a>
+              <a href="https://www.youtube.com/@EndeNadu" target="_blank" rel="noopener" aria-label="നീക്കിവെച്ചത്: YouTube-ൽ കാണൂ"><span class="ic yt"><svg aria-hidden="true"><use href="#i-yt"/></svg></span>YouTube</a>
+            </div>
+          </div>
         </div>
       </article>
 
@@ -267,10 +301,14 @@ h1 .b { color: var(--gold); }
           <h3>ഉറങ്ങിപ്പോയി</h3>
           <p class="line">ആ രാത്രി ചെണ്ട വഴിയിലിട്ട് അയാൾ ഓടിയത് എന്തിനായിരുന്നു? പിറ്റേന്ന് നാട് മുഴുവൻ വഴക്കു പറഞ്ഞപ്പോൾ അയാൾ പറഞ്ഞത് ഒരൊറ്റ വാക്ക്.</p>
           <p class="en" lang="en">One Ramadan night a village drummer dropped his drum to carry a sick child four kilometres, and told no one why. Forty years later, the child's old mother walked the lanes for him.</p>
-          <a class="btn" href="https://www.instagram.com/ende.nadu/reel/DfdEiXGtLiU/" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12.5-7.5z" fill="currentColor"/></svg>
-            Instagram-ൽ കാണൂ
-          </a>
+          <div class="watch">
+            <p class="watch-label">ഈ കഥ കാണാൻ</p>
+            <div class="watch-row">
+              <a href="https://www.instagram.com/ende.nadu/reel/DfdEiXGtLiU/" target="_blank" rel="noopener" aria-label="ഉറങ്ങിപ്പോയി: Instagram-ൽ കാണൂ"><span class="ic ig"><svg aria-hidden="true"><use href="#i-ig"/></svg></span>Instagram</a>
+              <a href="https://www.facebook.com/ende.nadu" target="_blank" rel="noopener" aria-label="ഉറങ്ങിപ്പോയി: Facebook-ൽ കാണൂ"><span class="ic fb"><svg aria-hidden="true"><use href="#i-fb"/></svg></span>Facebook</a>
+              <a href="https://www.youtube.com/@EndeNadu" target="_blank" rel="noopener" aria-label="ഉറങ്ങിപ്പോയി: YouTube-ൽ കാണൂ"><span class="ic yt"><svg aria-hidden="true"><use href="#i-yt"/></svg></span>YouTube</a>
+            </div>
+          </div>
         </div>
       </article>
 
@@ -283,10 +321,14 @@ h1 .b { color: var(--gold); }
           <h3>ഒരു രൂപ</h3>
           <p class="line">എട്ടാം വയസ്സിൽ ഞാനൊരു കള്ളനായിരുന്നു. പക്ഷേ എന്നെക്കാൾ വലിയൊരു കള്ളൻ ആ വീട്ടിലുണ്ടായിരുന്നു. ആരായിരുന്നു അത്?</p>
           <p class="en" lang="en">Every night an eight-year-old stole one rupee from his father's shirt. Thirty years later, a coin rolled across the floor and told him who the real thief was.</p>
-          <a class="btn" href="https://www.instagram.com/ende.nadu/reel/DfcVANRNEYc/" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12.5-7.5z" fill="currentColor"/></svg>
-            Instagram-ൽ കാണൂ
-          </a>
+          <div class="watch">
+            <p class="watch-label">ഈ കഥ കാണാൻ</p>
+            <div class="watch-row">
+              <a href="https://www.instagram.com/ende.nadu/reel/DfcVANRNEYc/" target="_blank" rel="noopener" aria-label="ഒരു രൂപ: Instagram-ൽ കാണൂ"><span class="ic ig"><svg aria-hidden="true"><use href="#i-ig"/></svg></span>Instagram</a>
+              <a href="https://www.facebook.com/ende.nadu" target="_blank" rel="noopener" aria-label="ഒരു രൂപ: Facebook-ൽ കാണൂ"><span class="ic fb"><svg aria-hidden="true"><use href="#i-fb"/></svg></span>Facebook</a>
+              <a href="https://www.youtube.com/shorts/qpNHeFCLmjg" target="_blank" rel="noopener" aria-label="ഒരു രൂപ: YouTube-ൽ കാണൂ"><span class="ic yt"><svg aria-hidden="true"><use href="#i-yt"/></svg></span>YouTube</a>
+            </div>
+          </div>
         </div>
       </article>
 
@@ -299,10 +341,14 @@ h1 .b { color: var(--gold); }
           <h3>തണുത്ത ചായ</h3>
           <p class="line">“നിന്നെ കാത്തുനിന്നതല്ല, ചായ കുടിക്കാൻ വന്നതാ.” മൂന്നു കൊല്ലം അച്ഛൻ പറഞ്ഞ ആ കള്ളത്തിന്റെ സത്യം മീര അറിഞ്ഞത് പതിനഞ്ചു കൊല്ലം കഴിഞ്ഞാണ്. ആരാണ് അവളോട് പറഞ്ഞത്?</p>
           <p class="en" lang="en">Every night he stood at the bus stop with a glass of tea and said he had only come for tea. Fifteen years later, she learned he had never drunk a drop.</p>
-          <a class="btn" href="https://www.instagram.com/ende.nadu/reel/Dfb8OOZNmUt/" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12.5-7.5z" fill="currentColor"/></svg>
-            Instagram-ൽ കാണൂ
-          </a>
+          <div class="watch">
+            <p class="watch-label">ഈ കഥ കാണാൻ</p>
+            <div class="watch-row">
+              <a href="https://www.instagram.com/ende.nadu/reel/Dfb8OOZNmUt/" target="_blank" rel="noopener" aria-label="തണുത്ത ചായ: Instagram-ൽ കാണൂ"><span class="ic ig"><svg aria-hidden="true"><use href="#i-ig"/></svg></span>Instagram</a>
+              <a href="https://www.facebook.com/ende.nadu" target="_blank" rel="noopener" aria-label="തണുത്ത ചായ: Facebook-ൽ കാണൂ"><span class="ic fb"><svg aria-hidden="true"><use href="#i-fb"/></svg></span>Facebook</a>
+              <a href="https://www.youtube.com/shorts/02cqKekfATo" target="_blank" rel="noopener" aria-label="തണുത്ത ചായ: YouTube-ൽ കാണൂ"><span class="ic yt"><svg aria-hidden="true"><use href="#i-yt"/></svg></span>YouTube</a>
+            </div>
+          </div>
         </div>
       </article>
 
@@ -315,10 +361,14 @@ h1 .b { color: var(--gold); }
           <h3>ഗേറ്റ് വരെ</h3>
           <p class="line">മീൻപെട്ടിയുള്ള അച്ഛന്റെ സ്കൂട്ടർ കണ്ട് നാണിച്ച മകൻ പറഞ്ഞു: “ഗേറ്റിനു മുന്നിൽ ഇറക്കണ്ട.” രണ്ടു കൊല്ലം കഴിഞ്ഞ് ഹെഡ്മാസ്റ്റർ മൈക്കിലൂടെ പറഞ്ഞത് എന്തായിരുന്നു?</p>
           <p class="en" lang="en">A boy asked his father, a fish seller, to stop the scooter at the bend before the school gate. Two years later, the headmaster told the whole hall what he had seen.</p>
-          <a class="btn" href="https://www.instagram.com/ende.nadu/reel/DfbgJ8BtUYN/" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12.5-7.5z" fill="currentColor"/></svg>
-            Instagram-ൽ കാണൂ
-          </a>
+          <div class="watch">
+            <p class="watch-label">ഈ കഥ കാണാൻ</p>
+            <div class="watch-row">
+              <a href="https://www.instagram.com/ende.nadu/reel/DfbgJ8BtUYN/" target="_blank" rel="noopener" aria-label="ഗേറ്റ് വരെ: Instagram-ൽ കാണൂ"><span class="ic ig"><svg aria-hidden="true"><use href="#i-ig"/></svg></span>Instagram</a>
+              <a href="https://www.facebook.com/ende.nadu" target="_blank" rel="noopener" aria-label="ഗേറ്റ് വരെ: Facebook-ൽ കാണൂ"><span class="ic fb"><svg aria-hidden="true"><use href="#i-fb"/></svg></span>Facebook</a>
+              <a href="https://www.youtube.com/shorts/YQpYCMTm7m8" target="_blank" rel="noopener" aria-label="ഗേറ്റ് വരെ: YouTube-ൽ കാണൂ"><span class="ic yt"><svg aria-hidden="true"><use href="#i-yt"/></svg></span>YouTube</a>
+            </div>
+          </div>
         </div>
       </article>
 
