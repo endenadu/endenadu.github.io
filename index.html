@@ -128,6 +128,11 @@ h1 .b { color: var(--gold); }
   display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 360px)); justify-content: center;
   gap: 24px; max-width: 1140px; margin: 0 auto;
 }
+/* a last card left alone in its row moves to the middle (seven stories make 3+3+1 from 1128 px, 2+2+2+1 from 744 px;
+   auto-fit counts columns at their 360 px maximum, so those are the widths where the grid gains a column) */
+.stories { container-type: inline-size; }
+@container (min-width: 1128px) { .grid > .card:last-child:nth-child(3n+1) { grid-column: 2; } }
+@container (min-width: 744px) and (max-width: 1127.98px) { .grid > .card:last-child:nth-child(2n+1) { grid-column: 1 / -1; justify-self: center; width: calc(50% - 12px); } }
 .card {
   display: flex; flex-direction: column; overflow: hidden; min-width: 0;
   background: linear-gradient(180deg, #2a3262, #232a52); border: 1px solid var(--card-line); border-radius: 22px;
@@ -247,10 +252,32 @@ h1 .b { color: var(--gold); }
 
     <div class="grid">
 
-      <!-- Links from the ende.nadu reels chat (2026-11-09). No Facebook video link is known yet, so every Facebook tile opens the page;
-           a story not yet on YouTube opens the channel. Newest story first (the user, 2026-11-08). -->
+      <!-- Links come from the ende.nadu reels chat after each posting (the user, 2026-11-09). Until a story's own Facebook or YouTube
+           video is up, its tile opens the page or the channel. Newest story first (the user, 2026-11-08). -->
 
-      <!-- 01: posted last (the remake of the first reel, the old one was taken down), so it leads the list (the user, 2026-11-08). -->
+      <!-- 07: the newest story (posted 2026-11-09), so it leads the list and carries the "new story" chip. -->
+      <article class="card">
+        <a class="cover" href="https://www.instagram.com/ende.nadu/reel/Dfhc5o1tgZf/" target="_blank" rel="noopener" aria-label="ഒന്നാമത്തെ കുട്ടി: Instagram-ൽ കാണൂ">
+          <img src="cover-07.jpg" width="720" height="960" alt="ഒന്നാമത്തെ കുട്ടി എന്ന കഥയുടെ കവർ" decoding="async">
+          <span class="dur"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12.5-7.5z" fill="currentColor"/></svg>1:00</span>
+        </a>
+        <div class="body">
+          <p class="new">പുതിയ കഥ</p>
+          <h3>ഒന്നാമത്തെ കുട്ടി</h3>
+          <p class="line">അമ്മൂമ്മ ചെവിയിൽ പറഞ്ഞ ആ രഹസ്യം എന്നോട് മാത്രമാണെന്നാണ് ഞാൻ കരുതിയത്. അവധിയുടെ അവസാന രാത്രി, പതിനാറ് പേരക്കുട്ടികൾക്കിടയിൽ ആ രഹസ്യം പൊട്ടിയപ്പോൾ എന്താണ് സംഭവിച്ചത്?</p>
+          <p class="en" lang="en">Every summer holiday, Ammoomma whispered to each of her sixteen grandchildren that they were her first. On the last night of the holidays, they found out.</p>
+          <div class="watch">
+            <p class="watch-label">ഈ കഥ കാണാൻ</p>
+            <div class="watch-row">
+              <a href="https://www.instagram.com/ende.nadu/reel/Dfhc5o1tgZf/" target="_blank" rel="noopener" aria-label="ഒന്നാമത്തെ കുട്ടി: Instagram-ൽ കാണൂ"><span class="ic ig"><svg aria-hidden="true"><use href="#i-ig"/></svg></span>Instagram</a>
+              <a href="https://www.facebook.com/ende.nadu" target="_blank" rel="noopener" aria-label="ഒന്നാമത്തെ കുട്ടി: Facebook-ൽ കാണൂ"><span class="ic fb"><svg aria-hidden="true"><use href="#i-fb"/></svg></span>Facebook</a>
+              <a href="https://www.youtube.com/@EndeNadu" target="_blank" rel="noopener" aria-label="ഒന്നാമത്തെ കുട്ടി: YouTube-ൽ കാണൂ"><span class="ic yt"><svg aria-hidden="true"><use href="#i-yt"/></svg></span>YouTube</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 01: the remake of the first reel (the old one was taken down), posted 2026-11-08. -->
       <article class="card">
         <a class="cover" href="https://www.instagram.com/ende.nadu/reel/Dfepbp0N5OY/" target="_blank" rel="noopener" aria-label="വലുതാകുമ്പോൾ തന്നാൽ മതി: Instagram-ൽ കാണൂ">
           <img src="cover-01.jpg" width="720" height="960" alt="വലുതാകുമ്പോൾ തന്നാൽ മതി എന്ന കഥയുടെ കവർ" decoding="async">
@@ -277,7 +304,6 @@ h1 .b { color: var(--gold); }
           <span class="dur"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12.5-7.5z" fill="currentColor"/></svg>1:39</span>
         </a>
         <div class="body">
-          <p class="new">പുതിയ കഥ</p>
           <h3>നീക്കിവെച്ചത്</h3>
           <p class="line">ഗൾഫിൽ കാശുണ്ടായിട്ടും ബൈക്ക് വാങ്ങിത്തരാത്ത അച്ഛനെ അവൻ ആറു കൊല്ലം വിളിച്ചില്ല. അച്ഛന്റെ എക്സ്ചേഞ്ചിലെ കൗണ്ടറിൽ അവൻ അറിഞ്ഞത് എന്തായിരുന്നു?</p>
           <p class="en" lang="en">He stopped calling his father, a driver in Dubai, over a bike he never got. Six years later, at the same exchange counter, he learned where the money had gone.</p>
@@ -365,7 +391,7 @@ h1 .b { color: var(--gold); }
             <p class="watch-label">ഈ കഥ കാണാൻ</p>
             <div class="watch-row">
               <a href="https://www.instagram.com/ende.nadu/reel/DfbgJ8BtUYN/" target="_blank" rel="noopener" aria-label="ഗേറ്റ് വരെ: Instagram-ൽ കാണൂ"><span class="ic ig"><svg aria-hidden="true"><use href="#i-ig"/></svg></span>Instagram</a>
-              <a href="https://www.facebook.com/ende.nadu" target="_blank" rel="noopener" aria-label="ഗേറ്റ് വരെ: Facebook-ൽ കാണൂ"><span class="ic fb"><svg aria-hidden="true"><use href="#i-fb"/></svg></span>Facebook</a>
+              <a href="https://www.facebook.com/reel/1682259280229826" target="_blank" rel="noopener" aria-label="ഗേറ്റ് വരെ: Facebook-ൽ കാണൂ"><span class="ic fb"><svg aria-hidden="true"><use href="#i-fb"/></svg></span>Facebook</a>
               <a href="https://www.youtube.com/shorts/YQpYCMTm7m8" target="_blank" rel="noopener" aria-label="ഗേറ്റ് വരെ: YouTube-ൽ കാണൂ"><span class="ic yt"><svg aria-hidden="true"><use href="#i-yt"/></svg></span>YouTube</a>
             </div>
           </div>
