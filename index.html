@@ -124,16 +124,11 @@ h1 .b { color: var(--gold); }
   padding-block: 30px 56px;
   padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
 }
-.grid {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 360px)); justify-content: center;
-  gap: 24px; max-width: 1140px; margin: 0 auto;
-}
-/* a last card left alone in its row moves to the middle (seven stories make 3+3+1 from 1128 px, 2+2+2+1 from 744 px;
-   auto-fit counts columns at their 360 px maximum, so those are the widths where the grid gains a column) */
-.stories { container-type: inline-size; }
-@container (min-width: 1128px) { .grid > .card:last-child:nth-child(3n+1) { grid-column: 2; } }
-@container (min-width: 744px) and (max-width: 1127.98px) { .grid > .card:last-child:nth-child(2n+1) { grid-column: 1 / -1; justify-self: center; width: calc(50% - 12px); } }
+/* cards are 360 px wide (narrower only on a small phone), up to three in a row;
+   a last row that isn't full (one or two cards) sits in the middle */
+.grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; max-width: 1140px; margin: 0 auto; }
 .card {
+  flex: 0 1 360px;
   display: flex; flex-direction: column; overflow: hidden; min-width: 0;
   background: linear-gradient(180deg, #2a3262, #232a52); border: 1px solid var(--card-line); border-radius: 22px;
   box-shadow: 0 18px 44px rgba(10, 12, 32, .38);
@@ -255,14 +250,35 @@ h1 .b { color: var(--gold); }
       <!-- Links come from the ende.nadu reels chat after each posting (the user, 2026-11-09). Until a story's own Facebook or YouTube
            video is up, its tile opens the page or the channel. Newest story first (the user, 2026-11-08). -->
 
-      <!-- 07: the newest story (posted 2026-11-09), so it leads the list and carries the "new story" chip. -->
+      <!-- 08: the newest story (posted 2026-11-10), so it leads the list and carries the "new story" chip. -->
+      <article class="card">
+        <a class="cover" href="https://www.instagram.com/ende.nadu/reel/DfkB_A-NIKc/" target="_blank" rel="noopener" aria-label="കപ്പും കപ്പയും: Instagram-ൽ കാണൂ">
+          <img src="cover-08.jpg" width="720" height="960" alt="കപ്പും കപ്പയും എന്ന കഥയുടെ കവർ" decoding="async">
+          <span class="dur"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12.5-7.5z" fill="currentColor"/></svg>1:34</span>
+        </a>
+        <div class="body">
+          <p class="new">പുതിയ കഥ</p>
+          <h3>കപ്പും കപ്പയും</h3>
+          <p class="line">മുപ്പത്താറു കൊല്ലം, അർജന്റീന തോൽക്കുമ്പോഴെല്ലാം കോയക്ക ഒരു കപ്പയുമായി വേലിക്കൽ വരും. ഖത്തറിൽ അർജന്റീന ജയിച്ച രാത്രി ജംഗ്ഷനിൽ വരാതിരുന്നത് കോയക്ക മാത്രം. അന്ന് രാത്രി എന്താണ് സംഭവിച്ചത്?</p>
+          <p class="en" lang="en">For thirty-six years, whenever Argentina lost, Koyakka brought a kappa to the fence. The night Argentina finally won, he was the only one who did not come to the junction.</p>
+          <div class="watch">
+            <p class="watch-label">ഈ കഥ കാണാൻ</p>
+            <div class="watch-row">
+              <a href="https://www.instagram.com/ende.nadu/reel/DfkB_A-NIKc/" target="_blank" rel="noopener" aria-label="കപ്പും കപ്പയും: Instagram-ൽ കാണൂ"><span class="ic ig"><svg aria-hidden="true"><use href="#i-ig"/></svg></span>Instagram</a>
+              <a href="https://www.facebook.com/ende.nadu" target="_blank" rel="noopener" aria-label="കപ്പും കപ്പയും: Facebook-ൽ കാണൂ"><span class="ic fb"><svg aria-hidden="true"><use href="#i-fb"/></svg></span>Facebook</a>
+              <a href="https://www.youtube.com/@EndeNadu" target="_blank" rel="noopener" aria-label="കപ്പും കപ്പയും: YouTube-ൽ കാണൂ"><span class="ic yt"><svg aria-hidden="true"><use href="#i-yt"/></svg></span>YouTube</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 07: posted 2026-11-09. -->
       <article class="card">
         <a class="cover" href="https://www.instagram.com/ende.nadu/reel/Dfhc5o1tgZf/" target="_blank" rel="noopener" aria-label="ഒന്നാമത്തെ കുട്ടി: Instagram-ൽ കാണൂ">
           <img src="cover-07.jpg" width="720" height="960" alt="ഒന്നാമത്തെ കുട്ടി എന്ന കഥയുടെ കവർ" decoding="async">
           <span class="dur"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12.5-7.5z" fill="currentColor"/></svg>1:00</span>
         </a>
         <div class="body">
-          <p class="new">പുതിയ കഥ</p>
           <h3>ഒന്നാമത്തെ കുട്ടി</h3>
           <p class="line">അമ്മൂമ്മ ചെവിയിൽ പറഞ്ഞ ആ രഹസ്യം എന്നോട് മാത്രമാണെന്നാണ് ഞാൻ കരുതിയത്. അവധിയുടെ അവസാന രാത്രി, പതിനാറ് പേരക്കുട്ടികൾക്കിടയിൽ ആ രഹസ്യം പൊട്ടിയപ്പോൾ എന്താണ് സംഭവിച്ചത്?</p>
           <p class="en" lang="en">Every summer holiday, Ammoomma whispered to each of her sixteen grandchildren that they were her first. On the last night of the holidays, they found out.</p>
