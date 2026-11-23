@@ -129,8 +129,17 @@ h1 .b { color: var(--gold); }
 .sec-head p { margin-top: 10px; font-size: 16px; color: var(--muted); text-wrap: balance; }
 
 /* ---------- the stories ---------- */
+/* the village runs on under the whole page (the user, 2026-11-24): the script at the end draws it in .land, behind everything
+   in main, with the reels' people walking its paths and a bus and a scooter on its road; open stretches of it lie above the
+   stories, between the stories and "about", and below "about", which stays a box of its own */
+main { position: relative; z-index: 0; }
+.land { position: absolute; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
+.land svg { position: absolute; left: 0; top: 0; }
+.walker { position: absolute; left: 0; top: 0; width: auto; will-change: transform; }
+.stories .sec-head { padding: 18px 16px 16px; border: 1px solid var(--card-line); border-radius: 22px; background: rgba(24, 29, 56, .8); }
+.deck-nav { padding: 6px; border-radius: 999px; background: rgba(24, 29, 56, .8); }
 .stories {
-  padding-block: 30px 56px;
+  padding-block: 220px 40px;
   padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
 }
 /* cards are 360 px wide (narrower only on a small phone), up to three in a row;
@@ -198,10 +207,40 @@ h1 .b { color: var(--gold); }
 .grid.stack.dragging .card { transition: none; }
 .grid.stack img { pointer-events: none; -webkit-user-drag: none; }
 .grid.stack a { -webkit-user-drag: none; }
+/* a little smaller in the pile (the user, 2026-11-24: "അത്ര വലുപ്പം വേണ്ട, കുറച്ചും കൂടി ചെറുതാക്കൂ") */
+.grid.stack { max-width: 300px; }
+.deck-nav { max-width: 340px; gap: 12px; }
+.deck-count small { white-space: nowrap; }
+/* nothing between the two arrows (the user, 2026-11-24: "ഇടയിൽ നിൽക്കുന്നത് അത് ആവശ്യമില്ല, അതവിടെ നിന്ന് മാറ്റിയേക്കൂ"):
+   "1 / 15" and the hint stay only for screen readers, and the bar closes up around the two buttons */
+.deck-nav { width: fit-content; }
+.deck-count { position: absolute; width: 1px; height: 1px; min-width: 0; margin: -1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+/* and shorter (the user, 2026-11-24: "അടിയിലേക്കുള്ള വലിപ്പവും ഇത്ര വേണ്ട"): the cover 4:5 with its top kept, tighter text,
+   and the three watch buttons as small pills, icon and name side by side */
+.grid.stack .cover { aspect-ratio: 4 / 5; }
+.grid.stack .cover img { object-position: center top; }
+.grid.stack .body { gap: 7px; padding: 12px 14px 14px; }
+.grid.stack .new { font-size: 12.5px; padding: 4px 11px 2px; }
+.grid.stack .body h3 { font-size: 21.5px; }
+.grid.stack .line { font-size: 15px; line-height: 1.58; }
+.grid.stack .en { font-size: 12.5px; line-height: 1.45; }
+.grid.stack .dur { left: 10px; bottom: 10px; padding: 5px 10px 5px 8px; font-size: 12.5px; }
+.grid.stack .watch { padding-top: 2px; }
+.grid.stack .watch-label { font-size: 12.5px; }
+.grid.stack .watch-row { gap: 6px; margin-top: 7px; }
+.grid.stack .watch-row a { flex-direction: row; justify-content: center; gap: 5px; padding: 6px 4px; border-radius: 999px; font-size: 11.5px; }
+.grid.stack .ic { width: 24px; height: 24px; box-shadow: none; }
+.grid.stack .ic svg { width: 14px; height: 14px; }
+/* the reels' own people behind the top story (the user, 2026-11-24): now and then one leans out from behind it, and
+   sometimes one comes out fully beside the pile, waving, walking or talking; they hide while a card is being moved */
+.grid.stack { position: relative; }
+.actor { position: absolute; height: 140px; width: auto; opacity: 0; pointer-events: none; transform-origin: 50% 100%; will-change: transform, opacity; }
+.grid.stack.dragging .actor { visibility: hidden; }
+@media (min-width: 700px) { .actor { height: 200px; } }
 
 /* ---------- about ---------- */
 .about {
-  padding-block: 8px 64px;
+  padding-block: 210px 230px;
   padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
 }
 .about-box {
@@ -702,9 +741,6 @@ h1 .b { color: var(--gold); }
     glints + (MOVE ? '' : birds);
 
   document.querySelector('.hero .village').innerHTML = `
-    <defs>
-      <linearGradient id="toNight" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1f2546" stop-opacity="0"/><stop offset=".8" stop-color="#1f2546"/></linearGradient>
-    </defs>
     <circle cx="720" cy="118" r="44" fill="#fbe6b8"/>
     ${cloud(300, 66, .5, ...LOW)}${cloud(1150, 58, .55, ...LOW)}${cloud(905, 72, .26, ...LOW)}${NARROW ? cloud(560, 64, .42, ...LOW) + cloud(790, 40, .3, ...LOW) : ''}
     <path d="M-20 118 Q180 82 400 108 T820 100 T1240 104 T1660 98 V300 H-20Z" fill="${P.hillFar}"/>
@@ -717,8 +753,10 @@ h1 .b { color: var(--gold); }
     <path d="M690 300 C684 268 742 254 718 232 C704 220 724 210 720 200 L724 200 C731 211 714 220 730 232 C760 255 718 270 742 300Z" fill="${P.path}"/>
     ${hut(330, 248, .7)}${hut(560, 242, .7)}${hut(872, 238, .7, 1)}${hut(1120, 246, .7, 1)}
     <path d="M-20 284 Q720 262 1460 284 V300 H-20Z" fill="${P.paddy}"/>
-    <path d="M-20 290 Q720 270 1460 290" fill="none" stroke="${P.paddyLine}" stroke-width="2.5"/>
-    <rect x="-20" y="258" width="1480" height="44" fill="url(#toNight)"/>`;
+    <path d="M-20 290 Q720 270 1460 290" fill="none" stroke="${P.paddyLine}" stroke-width="2.5"/>`;
+
+  // the village goes on down the page (the script at the end draws it with these same palms and huts)
+  window.__village = { P, hut, palm, cloud, MOVE, LOW, MID };
 
   if (!MOVE) return;
   // two flocks, each bird flapping and bobbing in its own time: the five from the drawing cross the sky behind the logo,
@@ -785,19 +823,22 @@ h1 .b { color: var(--gold); }
     const p = Math.min(1, Math.abs(dx) / (w * .6)), q = Math.min(1, dx / (w * .8));
     cards.forEach((c, k) => {
       const d = k - i;
-      let t, o = 1, z = n - Math.abs(d);
+      // the top card lies above the people behind it (z n + 3) and the cards under it lie below them
+      let t, o = 1, z = d === 0 ? n + 5 : n - Math.abs(d);
       if (d < 0) {
         // gone cards wait out of sight on the left; the last one fades back in as it is pulled back
-        z = n + 2; o = d === -1 && back ? Math.min(1, q * 2.2) : 0;
+        z = n + 8; o = d === -1 && back ? Math.min(1, q * 2.2) : 0;
         t = d === -1 && back ? `translateX(${-(w + 80) * (1 - q)}px) rotate(${-12 * (1 - q)}deg)` : `translateX(${-(w + 80)}px) rotate(-12deg)`;
       } else if (d === 0) {
-        t = fwd ? `translateX(${dx}px) rotate(${dx / 24}deg)` : back ? `translate(${8 * q}px, ${10 * q}px) rotate(${2 * q}deg) scale(${1 - .03 * q})`
+        t = fwd ? `translateX(${dx}px) rotate(${dx / 24}deg)` : back ? `translate(${14 * q}px, ${6 * q}px) rotate(${4 * q}deg) scale(${1 - .02 * q})`
           : edge ? `translateX(${dx * .25}px)` : 'none';
       } else if (d === 1) {
+        // the sheets under the top one lie fanned out a little wider (the user, 2026-11-24)
         const r = fwd ? p : 0;
-        t = `translate(${8 - 8 * r}px, ${10 - 10 * r}px) rotate(${2 - 2 * r}deg) scale(${.97 + .03 * r})`;
-      } else if (d === 2) t = 'translate(-7px, 18px) rotate(-2.2deg) scale(.94)';
-      else { t = 'translate(0, 22px) scale(.92)'; o = 0; }
+        t = `translate(${14 - 14 * r}px, ${6 - 6 * r}px) rotate(${4 - 4 * r}deg) scale(${.98 + .02 * r})`;
+      } else if (d === 2) t = 'translate(-14px, 10px) rotate(-4.5deg) scale(.96)';
+      else if (d === 3) t = 'translate(3px, 15px) rotate(1.4deg) scale(.94)';
+      else { t = 'translate(0, 20px) scale(.92)'; o = 0; }
       c.style.transform = t; c.style.opacity = o; c.style.zIndex = z;
       c.inert = d !== 0; c.setAttribute('aria-hidden', String(d !== 0));
     });
@@ -842,6 +883,151 @@ h1 .b { color: var(--gold); }
   stack.addEventListener('dragstart', e => e.preventDefault());
   addEventListener('resize', () => { w = cards[0].offsetWidth; layout(); });
   layout();
+
+  // the people behind the top story, drawn from the reels (tools\chars.html): each is a short moving loop
+  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  // the fish-seller father waving, the schoolboy walking, Geetha teacher talking
+  const people = ['father', 'boy', 'teacher'].map(name => {
+    const img = new Image();
+    img.className = 'actor'; img.alt = ''; img.decoding = 'async'; img.src = `char-${name}.webp`;
+    img.style.zIndex = n + 3;
+    stack.appendChild(img);
+    return { img, busy: false };
+  });
+  // where they come out: three heights on each side, all in the upper half of the pile that a phone shows first
+  const spots = [-1, 1].flatMap(side => [4, 22, 40].map(top => ({ side, top })));
+  let seen = false, lastSpot = -1, timer = 0;
+  const later = ms => { clearTimeout(timer); timer = setTimeout(act, ms); };
+  const act = () => {
+    const free = people.filter(p => !p.busy);
+    if (!seen || stack.classList.contains('dragging') || !free.length) return later(1500);
+    const p = free[Math.floor(Math.random() * free.length)];
+    let k; do { k = Math.floor(Math.random() * spots.length); } while (k === lastSpot);
+    lastSpot = k;
+    const s = spots[k], full = Math.random() < .5, im = p.img, flip = s.side > 0 ? ' scaleX(-1)' : '';
+    im.style.left = s.side > 0 ? 'auto' : '0'; im.style.right = s.side > 0 ? '0' : 'auto';
+    im.style.top = s.top + '%';
+    const hid = `translateX(0)${flip}`;
+    const out = full ? `translateX(calc(${s.side} * (100% + 8px)))${flip}` : `translateX(${s.side * 58}%) rotate(${s.side * 7}deg)${flip}`;
+    const sway = full ? `translateX(calc(${s.side} * (100% + 8px))) translateY(-4px)${flip}` : `translateX(${s.side * 52}%) rotate(${s.side * 4}deg)${flip}`;
+    p.busy = true;
+    const run = im.animate([
+      { transform: hid, opacity: 1 }, { transform: out, opacity: 1, offset: .2 }, { transform: sway, opacity: 1, offset: .5 },
+      { transform: out, opacity: 1, offset: .8 }, { transform: hid, opacity: 1, offset: .99 }, { transform: hid, opacity: 0 }
+    ], { duration: full ? 5200 : 3400, easing: 'ease-in-out' });
+    run.onfinish = run.oncancel = () => { p.busy = false; };
+    later(full ? 3600 : 2600 + Math.random() * 1600);
+  };
+  if ('IntersectionObserver' in window) new IntersectionObserver(([e]) => { seen = e.isIntersecting; }).observe(stack);
+  else seen = true;
+  later(1200);
+})();
+</script>
+
+<script>
+// The village runs on down the whole page under everything (the user, 2026-11-24: "ആ ഗ്രാമത്തിൻ്റെ എല്ലാ സംഭവങ്ങളും
+// ബാക്ക്ഗ്രൗണ്ടിൽ വേണം ... ഇവർ അങ്ങോട്ടും ഇങ്ങോട്ടും നടക്കുന്നതും"): the path from the top winds down into it; a village lane
+// above the stories, a grove with a lane behind them, a road with the bus and the scooter below them, and a paddy bund below
+// "about". The reels' people walk the lanes both ways (tools\walkers.html drew them); "about" stays a box of its own above it all.
+(() => {
+  const V = window.__village, main = document.querySelector('main');
+  if (!V || !main) return;
+  const { P, hut, palm, MOVE } = V;
+  const land = document.createElement('div');
+  land.className = 'land'; land.setAttribute('aria-hidden', 'true');
+  main.prepend(land);
+  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  land.appendChild(svg);
+
+  const tree = (x, base, h, flip) => palm(x, base - h, h / 560, flip);        // a palm standing on base, h px tall
+  const house = (x, base, w, flip) => hut(x, base - 54 * w / 160, w / 160, flip); // a hut standing on base, w px wide
+  const bush = (x, y, s, c) => `<path d="M${x - 30 * s} ${y} Q${x - 34 * s} ${y - 22 * s} ${x - 14 * s} ${y - 26 * s} Q${x - 6 * s} ${y - 44 * s} ${x + 12 * s} ${y - 34 * s} Q${x + 34 * s} ${y - 36 * s} ${x + 32 * s} ${y} Z" fill="${c}"/>`;
+  const ROAD = '#3a3e44', DIRT = P.path, GRASS = ['#466350', '#3d5847', '#35503f'];
+  let lanes = [], W = 0;
+
+  const draw = () => {
+    W = main.clientWidth;
+    const H = main.clientHeight, mt = main.getBoundingClientRect().top;
+    const at = sel => { const b = document.querySelector(sel).getBoundingClientRect(); return { top: b.top - mt, bottom: b.bottom - mt, left: b.left, right: b.right }; };
+    const head = at('.stories .sec-head'), pile = at('.stories .grid'), box = at('.about-box');
+    const narrow = W < 700, step = narrow ? 120 : 170;
+    const yA = head.top - 34, yP = pile.top + (pile.bottom - pile.top) * .55, yR = box.top - 46, yC = box.bottom + 150;
+    let s = '';
+    // the ground, from the paddy at the foot of the top village down to the footer's night
+    s += `<defs><linearGradient id="landG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${P.paddy}"/><stop offset=".35" stop-color="#3e5a48"/><stop offset=".8" stop-color="#2c463a"/><stop offset="1" stop-color="#1c2a2c"/></linearGradient>
+      <linearGradient id="landEnd" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#191e3a" stop-opacity="0"/><stop offset="1" stop-color="#191e3a"/></linearGradient></defs>
+      <rect width="${W}" height="${H}" fill="url(#landG)"/>`;
+    // paddy rows all down the page
+    for (let y = 24; y < H; y += 46) s += `<path d="M-20 ${y} Q${W / 2} ${y - 10} ${W + 20} ${y}" fill="none" stroke="${P.paddyLine}" stroke-width="1.6" opacity=".28"/>`;
+    // the path from the top village winds down into the first lane
+    const cx = W / 2;
+    s += `<path d="M${cx - 18} -2 C${cx - 30} ${yA * .35} ${cx + 40} ${yA * .55} ${cx + 6} ${yA - 10} L${cx + 46} ${yA - 10} C${cx + 74} ${yA * .55} ${cx + 4} ${yA * .35} ${cx + 18} -2Z" fill="${DIRT}"/>`;
+    // lane A: palms and huts beyond it, the lane, bushes in front
+    for (let x = step * .4, i = 0; x < W + 40; x += step, i++) {
+      s += i % 2 ? house(x, yA - 30, narrow ? 54 : 70, i % 4 === 1) : tree(x, yA - 24, narrow ? 92 : 120, i % 4 === 2);
+    }
+    s += `<path d="M-20 ${yA - 8} Q${W * .3} ${yA - 16} ${W * .55} ${yA - 8} T${W + 20} ${yA - 6} V${yA + 10} Q${W * .5} ${yA + 4} -20 ${yA + 12}Z" fill="${DIRT}"/>`;
+    for (let x = step * .9, i = 0; x < W; x += step * 1.3, i++) s += bush(x, yA + 40, narrow ? .8 : 1, GRASS[i % 3]);
+    // the grove behind the stories: palms down both sides, a lane across
+    for (let y = head.bottom + 120, i = 0; y < box.top - 120; y += 150, i++) {
+      s += tree(18 + (i % 2) * 22, y, narrow ? 100 : 140, i % 2) + tree(W - 18 - (i % 2) * 22, y + 60, narrow ? 100 : 140, 1 - i % 2);
+      if (!narrow) s += house(W * .14 + (i % 3) * 40, y + 30, 90, i % 2) + house(W * .86 - (i % 3) * 40, y + 90, 90, 1 - i % 2) + tree(W * .22, y + 100, 110, 1) + tree(W * .78, y + 20, 110);
+    }
+    s += `<path d="M-20 ${yP - 8} Q${W / 2} ${yP - 18} ${W + 20} ${yP - 8} V${yP + 10} Q${W / 2} ${yP} -20 ${yP + 10}Z" fill="${DIRT}" opacity=".9"/>`;
+    // the road below the stories, with the bus and the scooter on it
+    s += `<rect x="-20" y="${yR - 38}" width="${W + 40}" height="46" fill="${ROAD}"/><path d="M-20 ${yR - 38} H${W + 20}M-20 ${yR + 8} H${W + 20}" stroke="#6f6a5f" stroke-width="3"/>`;
+    for (let x = 10; x < W; x += 46) s += `<path d="M${x} ${yR - 15} H${x + 24}" stroke="#e6dfcc" stroke-width="3" opacity=".8"/>`;
+    for (let x = step * .6, i = 0; x < W + 40; x += step, i++) s += i % 3 === 1 ? house(x, yR - 60, narrow ? 54 : 74, i % 2) : tree(x, yR - 52, narrow ? 84 : 112, i % 2);
+    // the paddy bund below "about"
+    s += `<path d="M-20 ${yC - 8} Q${W / 2} ${yC - 20} ${W + 20} ${yC - 8} V${yC + 8} Q${W / 2} ${yC - 4} -20 ${yC + 8}Z" fill="#7d6a52"/>`;
+    for (let x = step * .3, i = 0; x < W + 40; x += step * 1.2, i++) s += tree(x, yC - 26, narrow ? 96 : 126, i % 2);
+    s += `<rect y="${H - 90}" width="${W}" height="90" fill="url(#landEnd)"/>`;
+    svg.setAttribute('width', W); svg.setAttribute('height', H); svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+    svg.innerHTML = s;
+    lanes = [{ y: yA, kind: 'lane' }, { y: yP, kind: 'lane' }, { y: yR, kind: 'road' }, { y: yC, kind: 'lane' }].map(l => Object.assign(l, { busy: 0, next: 0, last: '' }));
+    land.querySelectorAll('.walker').forEach(w => w.remove());
+  };
+
+  // the walkers: their drawn size in px, how far one walk cycle carries them in drawing units, and how big to show them
+  const SIZE = { schoolboy: [112, 227], schoolgirl: [119, 251], woman: [147, 251], manwhite: [129, 245], manblue: [129, 245], oldman: [129, 245], teen: [129, 245], kidred: [112, 227], scooter: [258, 200], bus: [424, 190] };
+  const PEOPLE = ['schoolboy', 'schoolgirl', 'woman', 'manwhite', 'manblue', 'oldman', 'teen', 'kidred'];
+  const GROW = { schoolgirl: .9, bus: 2.1, scooter: 1.05 };
+  const STRIDE = { schoolboy: 355, kidred: 355 };
+  const send = (lane, name) => {
+    const [iw, ih] = SIZE[name], human = innerWidth < 700 ? 80 : 116, k = human / 245 * (GROW[name] || 1);
+    const w = iw * k, h = ih * k, dir = Math.random() < .5 ? 1 : -1;
+    // true walking speed: one cycle (16 frames at 12 a second) carries a walker its stride; vehicles go faster
+    const walk = (STRIDE[name] || 430) * .36 * (human / 245) / (16 / 12), speed = name === 'bus' ? walk * 2 : name === 'scooter' ? walk * 2.4 : walk;
+    const img = new Image();
+    img.className = 'walker'; img.alt = ''; img.decoding = 'async'; img.src = `walk-${name}.webp`;
+    img.style.height = h + 'px'; img.style.top = (lane.y - h + 3) + 'px';
+    land.appendChild(img);
+    const flip = dir < 0 ? ' scaleX(-1)' : '', x0 = dir > 0 ? -w - 10 : W + 10, x1 = dir > 0 ? W + 10 : -w - 10;
+    lane.busy++;
+    const run = img.animate([{ transform: `translateX(${x0}px)${flip}` }, { transform: `translateX(${x1}px)${flip}` }], { duration: Math.abs(x1 - x0) / speed * 1000, easing: 'linear' });
+    run.onfinish = run.oncancel = () => { img.remove(); lane.busy--; };
+  };
+  const tick = () => {
+    const now = performance.now(), top = main.getBoundingClientRect().top;
+    lanes.forEach(l => {
+      const y = top + l.y;
+      if (y < -200 || y > innerHeight + 300 || now < l.next || l.busy >= 2) return;
+      let name;
+      if (l.kind === 'road') name = Math.random() < .7 ? (Math.random() < .55 ? 'scooter' : 'bus') : PEOPLE[Math.floor(Math.random() * PEOPLE.length)];
+      else do { name = PEOPLE[Math.floor(Math.random() * PEOPLE.length)]; } while (name === l.last);
+      l.last = name;
+      send(l, name);
+      l.next = now + (l.kind === 'road' ? 5000 : 3000) + Math.random() * 5000;
+    });
+  };
+
+  let w0 = 0, t0 = 0;
+  const redraw = () => { if (Math.abs(main.clientWidth - w0) > 2 || !lanes.length) { w0 = main.clientWidth; draw(); } };
+  draw(); w0 = main.clientWidth;
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { draw(); });
+  addEventListener('load', draw);
+  addEventListener('resize', () => { clearTimeout(t0); t0 = setTimeout(redraw, 200); });
+  if (MOVE) setInterval(tick, 700);
 })();
 </script>
 </body>
