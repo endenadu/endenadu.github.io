@@ -57,7 +57,7 @@ p { margin: 0; }
 .hero {
   --band: clamp(230px, 20.83vw, 420px);
   position: relative; overflow: hidden; isolation: isolate; text-align: center;
-  padding-block: 44px calc(var(--band) + 10px);
+  padding-block: 70px calc(var(--band) + 10px);
   padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
   /* the setting sun's glow sits in the background, so it fades across the village's edge instead of being cut by it */
   background:
@@ -83,12 +83,13 @@ p { margin: 0; }
    (the user, 2026-11-24: "എൻ്റെ നാടു എന്ന് ആ ലോഗോയുടെ ഉള്ളിൽ എങ്ങനെയാണോ എഴുതിയിട്ടുള്ളത് അതാണ് ഇവിടെ കൊണ്ടുവരേണ്ടത്.
    എന്നിട്ട് ലോഗോ അവിടെ നിന്ന് നീക്കം ചെയ്തോളൂ"): title.webp from tools\title_capture.ps1, its words in the alt text;
    the English "Ende Nadu · @ende.nadu" under it was taken away the same day */
-/* the two lines now come first and the name sits right above the three marks (the user, 2026-11-24: "ഐക്കണുകളുടെ തൊട്ട്
-   മുകളിലാണ് ... ആ സാധനം വെക്കേണ്ടത്. അതിൻ്റെ ഇടയിലുള്ള ആ എഴുത്തുകൾ അത് മുകളിലേക്ക് മാറ്റുക") */
-h1 { margin: 22px 0 0; line-height: 0; }
+/* the name first again with the two lines under it, as before (the user, 2026-11-24, after trying the lines first: "അതിൻ്റെ
+   അടിയിലുള്ള എഴുത്ത് അത് നേരത്തെ ചെയ്തതുപോലെ തന്നെ ചെയ്യുക"), the whole top a little lower than then so the name doesn't
+   sit right against the top ("വളരെ കുറച്ച് മാത്രം ജസ്റ്റ് ഒന്ന് അടിയിലേക്ക് ഇറക്കുക"): see .hero's padding */
+h1 { margin: 0; line-height: 0; }
 h1 img { width: min(68vw, 260px); height: auto; margin: 0 auto; filter: drop-shadow(0 8px 14px rgba(20, 18, 50, .45)); }
 .tagline {
-  max-width: 22em; margin: 0 auto; font-size: 20px; font-weight: 700; line-height: 1.5; color: var(--cream); text-wrap: balance;
+  max-width: 22em; margin: 18px auto 0; font-size: 20px; font-weight: 700; line-height: 1.5; color: var(--cream); text-wrap: balance;
   text-shadow: 0 1px 2px rgba(38, 40, 72, .75), 0 0 18px rgba(38, 40, 72, .4);
 }
 .sub { margin-top: 4px; font-size: 16px; color: #f6ecdd; text-shadow: 0 1px 2px rgba(38, 40, 72, .7); text-wrap: balance; }
@@ -264,7 +265,7 @@ main { position: relative; z-index: 0; }
 .rise.up { opacity: 1; transform: none; }
 
 @media (min-width: 900px) {
-  .hero { padding-top: 64px; }
+  .hero { padding-top: 92px; }
   h1 img { width: 340px; }
   .tagline { font-size: 23px; }
   .sub { font-size: 17px; }
@@ -294,9 +295,9 @@ main { position: relative; z-index: 0; }
 <header class="hero">
   <svg class="sky" viewBox="0 0 1440 760" preserveAspectRatio="xMidYMin slice" aria-hidden="true"></svg>
   <svg class="village" viewBox="0 0 1440 300" preserveAspectRatio="xMidYMax slice" aria-hidden="true"></svg>
+  <h1><img src="title.webp" width="1100" height="703" alt="എന്റെ നാട്"></h1>
   <p class="tagline">ഞങ്ങളുടെ നാട്ടിലെ സാധാരണക്കാരുടെ കഥകൾ</p>
   <p class="sub">ഹൃദയം തൊടുന്ന മലയാളം അനിമേഷൻ കഥകൾ</p>
-  <h1><img src="title.webp" width="1100" height="703" alt="എന്റെ നാട്"></h1>
   <nav class="follow" aria-label="എന്റെ നാട് ഫോളോ ചെയ്യാൻ">
     <a class="btn" href="https://www.instagram.com/ende.nadu/" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><svg aria-hidden="true"><use href="#i-ig"/></svg></a>
     <a class="btn" href="https://www.facebook.com/ende.nadu" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook"><svg aria-hidden="true"><use href="#i-fb"/></svg></a>
