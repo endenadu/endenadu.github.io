@@ -83,10 +83,12 @@ p { margin: 0; }
    (the user, 2026-11-24: "എൻ്റെ നാടു എന്ന് ആ ലോഗോയുടെ ഉള്ളിൽ എങ്ങനെയാണോ എഴുതിയിട്ടുള്ളത് അതാണ് ഇവിടെ കൊണ്ടുവരേണ്ടത്.
    എന്നിട്ട് ലോഗോ അവിടെ നിന്ന് നീക്കം ചെയ്തോളൂ"): title.webp from tools\title_capture.ps1, its words in the alt text;
    the English "Ende Nadu · @ende.nadu" under it was taken away the same day */
-h1 { margin: 0; line-height: 0; }
+/* the two lines now come first and the name sits right above the three marks (the user, 2026-11-24: "ഐക്കണുകളുടെ തൊട്ട്
+   മുകളിലാണ് ... ആ സാധനം വെക്കേണ്ടത്. അതിൻ്റെ ഇടയിലുള്ള ആ എഴുത്തുകൾ അത് മുകളിലേക്ക് മാറ്റുക") */
+h1 { margin: 22px 0 0; line-height: 0; }
 h1 img { width: min(68vw, 260px); height: auto; margin: 0 auto; filter: drop-shadow(0 8px 14px rgba(20, 18, 50, .45)); }
 .tagline {
-  max-width: 22em; margin: 18px auto 0; font-size: 20px; font-weight: 700; line-height: 1.5; color: var(--cream); text-wrap: balance;
+  max-width: 22em; margin: 0 auto; font-size: 20px; font-weight: 700; line-height: 1.5; color: var(--cream); text-wrap: balance;
   text-shadow: 0 1px 2px rgba(38, 40, 72, .75), 0 0 18px rgba(38, 40, 72, .4);
 }
 .sub { margin-top: 4px; font-size: 16px; color: #f6ecdd; text-shadow: 0 1px 2px rgba(38, 40, 72, .7); text-wrap: balance; }
@@ -125,7 +127,10 @@ main { position: relative; z-index: 0; }
 .land { position: absolute; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
 .land svg { position: absolute; left: 0; top: 0; }
 .walker { position: absolute; left: 0; top: 0; width: auto; will-change: transform; }
-.stories .sec-head { padding: 18px 16px 16px; border: 1px solid var(--card-line); border-radius: 22px; background: rgba(24, 29, 56, .8); }
+/* no board above the stories and no arrows (the user, 2026-11-24: "ചെറിയൊരു ബോർഡ് ... അതിൻ്റെ തൊട്ടടിയിൽ അങ്ങോട്ടും
+   ഇങ്ങോട്ടും നീക്കുന്നതിൻ്റെ എംബ്ലവും ഇത് രണ്ടും അവിടെ നിന്നും ഒഴിവാക്കിയിരിക്കും"); the pile comes up in their place.
+   The heading stays only for screen readers, and the arrows only show when reached with the keyboard */
+.vh { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
 .deck-nav { padding: 6px; border-radius: 999px; background: rgba(24, 29, 56, .8); }
 .stories {
   padding-block: 165px 40px;
@@ -205,6 +210,7 @@ main { position: relative; z-index: 0; }
 /* nothing between the two arrows (the user, 2026-11-24: "ഇടയിൽ നിൽക്കുന്നത് അത് ആവശ്യമില്ല, അതവിടെ നിന്ന് മാറ്റിയേക്കൂ"):
    "1 / 15" and the hint stay only for screen readers, and the bar closes up around the two buttons */
 .deck-nav { width: fit-content; }
+.deck-nav:not(:focus-within) { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
 .deck-count { position: absolute; width: 1px; height: 1px; min-width: 0; margin: -1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 /* and shorter (the user, 2026-11-24: "അടിയിലേക്കുള്ള വലിപ്പവും ഇത്ര വേണ്ട"): the cover 4:5 with its top kept, tighter text,
    and the three watch buttons as small pills, icon and name side by side */
@@ -246,11 +252,16 @@ main { position: relative; z-index: 0; }
 .foot {
   padding-block: 34px 42px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
   text-align: center; background: #191e3a; border-top: 1px solid rgba(226, 194, 126, .14); }
-.foot .mark { width: 240px; height: 60px; margin: 0 auto; opacity: .92; }
+/* only "Kerala, India" and the © line (the user, 2026-11-24: the big "@ende.nadu" and the Instagram and Facebook links above
+   "Kerala, India" taken away, "കേരള ഇന്ത്യ എന്നതിൻ്റെ മുകളിലുള്ള സംഭവങ്ങൾ പൂർണ്ണമായി നീക്കുക") */
 .foot p { margin-top: 10px; font-size: 15px; color: var(--muted); }
 .foot a { color: var(--pale-gold); text-decoration: none; }
-.foot .foot-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 20px; }
 .foot .copy { margin-top: 6px; font-size: 14px; opacity: .8; }
+
+/* things rise softly into place as the page is scrolled down to them (the user, 2026-11-24: "ചെറിയ രൂപത്തിൽ, മൃദുവായ
+   രൂപത്തിൽ ... അടിയിൽ നിന്നും മുകളിലേക്ക് പൊന്തി വരുന്ന ... മോഷൻ"); the script at the end adds these only when motion is welcome */
+.rise { opacity: 0; transform: translateY(var(--rise, 30px)); transition: opacity .8s ease-out var(--d, 0s), transform 1s cubic-bezier(.2, .75, .25, 1) var(--d, 0s); }
+.rise.up { opacity: 1; transform: none; }
 
 @media (min-width: 900px) {
   .hero { padding-top: 64px; }
@@ -283,9 +294,9 @@ main { position: relative; z-index: 0; }
 <header class="hero">
   <svg class="sky" viewBox="0 0 1440 760" preserveAspectRatio="xMidYMin slice" aria-hidden="true"></svg>
   <svg class="village" viewBox="0 0 1440 300" preserveAspectRatio="xMidYMax slice" aria-hidden="true"></svg>
-  <h1><img src="title.webp" width="1100" height="703" alt="എന്റെ നാട്"></h1>
   <p class="tagline">ഞങ്ങളുടെ നാട്ടിലെ സാധാരണക്കാരുടെ കഥകൾ</p>
   <p class="sub">ഹൃദയം തൊടുന്ന മലയാളം അനിമേഷൻ കഥകൾ</p>
+  <h1><img src="title.webp" width="1100" height="703" alt="എന്റെ നാട്"></h1>
   <nav class="follow" aria-label="എന്റെ നാട് ഫോളോ ചെയ്യാൻ">
     <a class="btn" href="https://www.instagram.com/ende.nadu/" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><svg aria-hidden="true"><use href="#i-ig"/></svg></a>
     <a class="btn" href="https://www.facebook.com/ende.nadu" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook"><svg aria-hidden="true"><use href="#i-fb"/></svg></a>
@@ -295,10 +306,7 @@ main { position: relative; z-index: 0; }
 
 <main>
   <section class="stories" aria-labelledby="kathakal">
-    <div class="sec-head">
-      <h2 id="kathakal">നാട്ടിലെ കഥകൾ</h2>
-      <p>ഓരോ കഥയും ഒന്നര മിനിറ്റോളം. കാണാൻ കവറിൽ തൊടൂ.</p>
-    </div>
+    <h2 id="kathakal" class="vh">നാട്ടിലെ കഥകൾ</h2>
 
     <div class="grid">
 
@@ -647,8 +655,6 @@ main { position: relative; z-index: 0; }
 </main>
 
 <footer class="foot">
-  <img class="mark" src="mark.png" width="480" height="120" alt="@ende.nadu">
-  <p class="foot-links"><a href="https://www.instagram.com/ende.nadu/" target="_blank" rel="noopener">instagram.com/ende.nadu</a><a href="https://www.facebook.com/ende.nadu" target="_blank" rel="noopener">facebook.com/ende.nadu</a></p>
   <p class="copy">Kerala, India</p>
   <p class="copy">© 2026 എന്റെ നാട്&ensp;|&ensp;Ende Nadu</p>
 </footer>
@@ -715,9 +721,9 @@ main { position: relative; z-index: 0; }
     `<circle class="tw" style="--d:${(2.6 + (i * .73) % 3).toFixed(2)}s;animation-delay:-${((i * 1.37) % 5).toFixed(2)}s" cx="${x}" cy="${y}" r="${r}" fill="#fff4d0"/>`).join('');
   const glints = [[655, 175], [870, 92], [760, 28], [300, 60], [1150, 180], [578, 214], [886, 176]].map(([x, y], i) =>
     `<path class="glint" style="--d:${(7 + i * 1.4).toFixed(1)}s;animation-delay:-${(i * 2.3).toFixed(1)}s" d="M${x} ${y - 10} L${x + 2.2} ${y - 2.2} L${x + 10} ${y} L${x + 2.2} ${y + 2.2} L${x} ${y + 10} L${x - 2.2} ${y + 2.2} L${x - 10} ${y} L${x - 2.2} ${y - 2.2}Z" fill="#fff8de"/>`).join('');
-  // the moon keeps clear of the name now that the name stands where the logo was (wider): on a phone up in the top left
-  // corner above "എ", elsewhere to the left of the name
-  const moon = `<g transform="translate(${NARROW ? '548 40' : '455 112'})"><mask id="moonCut"><circle r="22" fill="#fff"/><circle cx="-9" cy="-7" r="20" fill="#000"/></mask><circle r="22" fill="#f6efd8" mask="url(#moonCut)"/></g>`;
+  // the moon keeps clear of the words: on a phone up in the top left corner, elsewhere to the left of the name, below the
+  // two lines that now come first
+  const moon = `<g transform="translate(${NARROW ? '548 40' : '462 214'})"><mask id="moonCut"><circle r="22" fill="#fff"/><circle cx="-9" cy="-7" r="20" fill="#000"/></mask><circle r="22" fill="#f6efd8" mask="url(#moonCut)"/></g>`;
   const birds = [[852, 170, .8, -6], [902, 152, .62, 4], [816, 198, .55, -2], [930, 184, .5, 8], [875, 208, .42, 3]].map(b => bird(...b)).join('');
 
   document.querySelector('.hero .sky').innerHTML =
@@ -895,12 +901,14 @@ main { position: relative; z-index: 0; }
 
   const draw = () => {
     W = main.clientWidth;
-    const H = main.clientHeight, mt = main.getBoundingClientRect().top;
-    const at = sel => { const b = document.querySelector(sel).getBoundingClientRect(); return { top: b.top - mt, bottom: b.bottom - mt, left: b.left, right: b.right }; };
-    const head = at('.stories .sec-head'), pile = at('.stories .grid'), box = at('.about-box');
+    const H = main.clientHeight;
+    // places inside main from the layout itself (offsets), so the soft rise of the pile and "about" (a transform) moves no lane;
+    // the first lane runs just above the pile now that the board above it is gone
+    const at = sel => { const el = document.querySelector(sel); let top = 0; for (let e = el; e && e !== main; e = e.offsetParent) top += e.offsetTop; return { top, bottom: top + el.offsetHeight }; };
+    const pile = at('.stories .grid'), box = at('.about-box');
     const narrow = W < 700, step = narrow ? 120 : 170;
     // the bund keeps clear of the footer's fade (the gaps were made smaller, the user, 2026-11-24: "ഗ്യാപ്പ് ചെറുതായിട്ടൊന്ന് കുറക്കുക")
-    const yA = head.top - 34, yP = pile.top + (pile.bottom - pile.top) * .55, yR = box.top - 46, yC = Math.min(box.bottom + 150, H - 52);
+    const yA = pile.top - 34, yP =pile.top + (pile.bottom - pile.top) * .55, yR = box.top - 46, yC = Math.min(box.bottom + 150, H - 52);
     let s = '';
     // the ground, from the paddy at the foot of the top village down to the footer's night
     s += `<defs><linearGradient id="landG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${P.paddy}"/><stop offset=".35" stop-color="#3e5a48"/><stop offset=".8" stop-color="#2c463a"/><stop offset="1" stop-color="#1c2a2c"/></linearGradient>
@@ -918,7 +926,7 @@ main { position: relative; z-index: 0; }
     s += `<path d="M-20 ${yA - 8} Q${W * .3} ${yA - 16} ${W * .55} ${yA - 8} T${W + 20} ${yA - 6} V${yA + 10} Q${W * .5} ${yA + 4} -20 ${yA + 12}Z" fill="${DIRT}"/>`;
     for (let x = step * .9, i = 0; x < W; x += step * 1.3, i++) s += bush(x, yA + 40, narrow ? .8 : 1, GRASS[i % 3]);
     // the grove behind the stories: palms down both sides, a lane across
-    for (let y = head.bottom + 120, i = 0; y < box.top - 120; y += 150, i++) {
+    for (let y = pile.top + 120, i = 0; y < box.top - 120; y += 150, i++) {
       s += tree(18 + (i % 2) * 22, y, narrow ? 100 : 140, i % 2) + tree(W - 18 - (i % 2) * 22, y + 60, narrow ? 100 : 140, 1 - i % 2);
       if (!narrow) s += house(W * .14 + (i % 3) * 40, y + 30, 90, i % 2) + house(W * .86 - (i % 3) * 40, y + 90, 90, 1 - i % 2) + tree(W * .22, y + 100, 110, 1) + tree(W * .78, y + 20, 110);
     }
@@ -977,6 +985,32 @@ main { position: relative; z-index: 0; }
   addEventListener('load', draw);
   addEventListener('resize', () => { clearTimeout(t0); t0 = setTimeout(redraw, 200); });
   if (MOVE) setInterval(tick, 700);
+})();
+</script>
+
+<script>
+// As the page is scrolled down, the pile of stories, the "about" box and the footer rise softly into place, the parts inside
+// "about" and the footer a little after one another (the user, 2026-11-24: "അടിയിലേക്ക് സ്ക്രോൾ ചെയ്യുമ്പോൾ ചെറിയ രൂപത്തിൽ,
+// മൃദുവായ രൂപത്തിൽ ... അടിയിൽ നിന്നും മുകളിലേക്ക് പൊന്തി വരുന്ന ... മോഷൻ"). Each group once, when it comes into view;
+// nothing moves with "reduce motion" set, and without the script everything simply stands in place.
+(() => {
+  if (!('IntersectionObserver' in window) || (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches)) return;
+  const pile = document.querySelector('.stories .grid'), box = document.querySelector('.about-box'), foot = document.querySelector('.foot');
+  // [the element that starts it, [element, how far it rises, its delay]...]
+  const groups = [];
+  if (pile) groups.push([pile, [[pile, 34, 0]]]);
+  if (box) groups.push([box, [[box, 30, 0], ...[...box.children].map((el, k) => [el, 14, .12 + k * .07])]]);
+  if (foot) groups.push([foot, [...foot.children].map((el, k) => [el, 16, k * .08])]);
+  const io = new IntersectionObserver(entries => entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    io.unobserve(e.target);
+    e.target.__rise.forEach(([el]) => el.classList.add('up'));
+  }), { rootMargin: '0px 0px -8% 0px' });
+  groups.forEach(([start, items]) => {
+    items.forEach(([el, rise, d]) => { el.style.setProperty('--rise', rise + 'px'); el.style.setProperty('--d', d.toFixed(2) + 's'); el.classList.add('rise'); });
+    start.__rise = items;
+    io.observe(start);
+  });
 })();
 </script>
 </body>
