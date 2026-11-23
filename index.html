@@ -79,33 +79,22 @@ p { margin: 0; }
 @keyframes fly-back { 0% { transform: translate(100vw, 0); } 50% { transform: translate(calc(50vw - 50%), 6px); } 100% { transform: translate(-100%, -4px); } }
 .hero.still .tw, .hero.still .glint, .hero.still .flock { animation-play-state: paused; }
 
-.logo {
-  width: 140px; height: 140px; margin: 0 auto 18px; border-radius: 50%;
-  box-shadow: 0 0 0 5px rgba(240, 192, 98, .14), 0 12px 34px rgba(18, 16, 48, .38);
-}
-h1 {
-  margin: 0; font-family: var(--display); font-weight: 700; font-size: 52px; line-height: 1.12;
-  text-shadow:
-    3px 0 0 var(--outline), -3px 0 0 var(--outline), 0 3px 0 var(--outline), 0 -3px 0 var(--outline),
-    2px 2px 0 var(--outline), -2px 2px 0 var(--outline), 2px -2px 0 var(--outline), -2px -2px 0 var(--outline),
-    0 5px 0 var(--outline), 0 12px 26px rgba(20, 18, 50, .55);
-}
-h1 .a { color: var(--cream); }
-h1 .b { color: var(--gold); }
-.handle {
-  margin-top: 8px; font-family: var(--display); font-weight: 700; font-size: 15px; letter-spacing: 1.5px;
-  color: var(--pale-gold); text-shadow: 0 1px 2px rgba(38, 40, 72, .7);
-}
+/* the name written exactly as inside the logo, in the reels' Swasam font, as a picture, and the logo itself no longer at the top
+   (the user, 2026-11-24: "എൻ്റെ നാടു എന്ന് ആ ലോഗോയുടെ ഉള്ളിൽ എങ്ങനെയാണോ എഴുതിയിട്ടുള്ളത് അതാണ് ഇവിടെ കൊണ്ടുവരേണ്ടത്.
+   എന്നിട്ട് ലോഗോ അവിടെ നിന്ന് നീക്കം ചെയ്തോളൂ"): title.webp from tools\title_capture.ps1, its words in the alt text;
+   the English "Ende Nadu · @ende.nadu" under it was taken away the same day */
+h1 { margin: 0; line-height: 0; }
+h1 img { width: min(68vw, 260px); height: auto; margin: 0 auto; filter: drop-shadow(0 8px 14px rgba(20, 18, 50, .45)); }
 .tagline {
   max-width: 22em; margin: 18px auto 0; font-size: 20px; font-weight: 700; line-height: 1.5; color: var(--cream); text-wrap: balance;
   text-shadow: 0 1px 2px rgba(38, 40, 72, .75), 0 0 18px rgba(38, 40, 72, .4);
 }
 .sub { margin-top: 4px; font-size: 16px; color: #f6ecdd; text-shadow: 0 1px 2px rgba(38, 40, 72, .7); text-wrap: balance; }
-/* Instagram, then Facebook, then YouTube, one under the other in the same gold (the user, 2026-11-09);
-   the icons line up on the left and each name sits in the middle; the size keeps the longest (YouTube) on one line from 360 px up */
-.follow { display: flex; flex-direction: column; gap: 12px; width: min(100%, 380px); margin: 24px auto 0; }
-.follow .btn { position: relative; padding-inline: 44px; text-align: center; font-size: clamp(14.5px, 4.1vw, 18px); }
-.follow .btn svg { position: absolute; left: 16px; top: calc(50% - 11.5px); margin-top: 0; }
+/* Instagram, Facebook and YouTube as their three marks in one row, in the page's own gold, no words (the user, 2026-11-24:
+   "ഒറ്റ ലൈനിൽ ഇൻസ്റ്റഗ്രാമിൻ്റെ ലോഗോയും ഫേസ്ബുക്കിൻ്റെ ലോഗോയും യൂട്യൂബിൻ്റെ ലോഗോയും കൊടുത്താൽ മതി"); a touch opens that page */
+.follow { display: flex; justify-content: center; gap: 18px; margin: 22px auto 0; }
+.follow .btn { width: 56px; height: 56px; padding: 0; border-radius: 50%; }
+.follow .btn svg { width: 26px; height: 26px; margin-top: 0; }
 
 /* ---------- buttons ---------- */
 .btn {
@@ -139,9 +128,11 @@ main { position: relative; z-index: 0; }
 .stories .sec-head { padding: 18px 16px 16px; border: 1px solid var(--card-line); border-radius: 22px; background: rgba(24, 29, 56, .8); }
 .deck-nav { padding: 6px; border-radius: 999px; background: rgba(24, 29, 56, .8); }
 .stories {
-  padding-block: 220px 40px;
+  padding-block: 165px 40px;
   padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
 }
+/* a computer's people and palms are bigger, so its first lane keeps a little more room */
+@media (min-width: 700px) { .stories { padding-top: 185px; } }
 /* cards are 360 px wide (narrower only on a small phone), up to three in a row;
    a last row that isn't full (one or two cards) sits in the middle */
 .grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; max-width: 1140px; margin: 0 auto; }
@@ -231,16 +222,10 @@ main { position: relative; z-index: 0; }
 .grid.stack .watch-row a { flex-direction: row; justify-content: center; gap: 5px; padding: 6px 4px; border-radius: 999px; font-size: 11.5px; }
 .grid.stack .ic { width: 24px; height: 24px; box-shadow: none; }
 .grid.stack .ic svg { width: 14px; height: 14px; }
-/* the reels' own people behind the top story (the user, 2026-11-24): now and then one leans out from behind it, and
-   sometimes one comes out fully beside the pile, waving, walking or talking; they hide while a card is being moved */
-.grid.stack { position: relative; }
-.actor { position: absolute; height: 140px; width: auto; opacity: 0; pointer-events: none; transform-origin: 50% 100%; will-change: transform, opacity; }
-.grid.stack.dragging .actor { visibility: hidden; }
-@media (min-width: 700px) { .actor { height: 200px; } }
 
 /* ---------- about ---------- */
 .about {
-  padding-block: 210px 230px;
+  padding-block: 160px 185px;
   padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
 }
 .about-box {
@@ -269,13 +254,14 @@ main { position: relative; z-index: 0; }
 
 @media (min-width: 900px) {
   .hero { padding-top: 64px; }
-  .logo { width: 170px; height: 170px; }
-  h1 { font-size: 72px; }
-  .handle { font-size: 16px; }
+  h1 img { width: 340px; }
   .tagline { font-size: 23px; }
   .sub { font-size: 17px; }
   .sec-head h2 { font-size: 40px; }
   .about-box { padding: 40px 48px 44px; }
+  .follow { gap: 20px; }
+  .follow .btn { width: 60px; height: 60px; }
+  .follow .btn svg { width: 28px; height: 28px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .tw, .glint { animation: none; }
@@ -297,15 +283,13 @@ main { position: relative; z-index: 0; }
 <header class="hero">
   <svg class="sky" viewBox="0 0 1440 760" preserveAspectRatio="xMidYMin slice" aria-hidden="true"></svg>
   <svg class="village" viewBox="0 0 1440 300" preserveAspectRatio="xMidYMax slice" aria-hidden="true"></svg>
-  <img class="logo" src="logo.jpg" width="600" height="600" alt="എന്റെ നാട് ലോഗോ">
-  <h1><span class="a">എന്റെ</span> <span class="b">നാട്</span></h1>
-  <p class="handle">Ende Nadu · @ende.nadu</p>
+  <h1><img src="title.webp" width="1100" height="703" alt="എന്റെ നാട്"></h1>
   <p class="tagline">ഞങ്ങളുടെ നാട്ടിലെ സാധാരണക്കാരുടെ കഥകൾ</p>
   <p class="sub">ഹൃദയം തൊടുന്ന മലയാളം അനിമേഷൻ കഥകൾ</p>
   <nav class="follow" aria-label="എന്റെ നാട് ഫോളോ ചെയ്യാൻ">
-    <a class="btn" href="https://www.instagram.com/ende.nadu/" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-ig"/></svg>Instagram-ൽ ഫോളോ ചെയ്യൂ</a>
-    <a class="btn" href="https://www.facebook.com/ende.nadu" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-fb"/></svg>Facebook-ൽ ഫോളോ ചെയ്യൂ</a>
-    <a class="btn" href="https://www.youtube.com/@EndeNadu" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-yt"/></svg>YouTube-ൽ സബ്&zwnj;സ്ക്രൈബ് ചെയ്യൂ</a>
+    <a class="btn" href="https://www.instagram.com/ende.nadu/" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><svg aria-hidden="true"><use href="#i-ig"/></svg></a>
+    <a class="btn" href="https://www.facebook.com/ende.nadu" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook"><svg aria-hidden="true"><use href="#i-fb"/></svg></a>
+    <a class="btn" href="https://www.youtube.com/@EndeNadu" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube"><svg aria-hidden="true"><use href="#i-yt"/></svg></a>
   </nav>
 </header>
 
@@ -731,7 +715,9 @@ main { position: relative; z-index: 0; }
     `<circle class="tw" style="--d:${(2.6 + (i * .73) % 3).toFixed(2)}s;animation-delay:-${((i * 1.37) % 5).toFixed(2)}s" cx="${x}" cy="${y}" r="${r}" fill="#fff4d0"/>`).join('');
   const glints = [[655, 175], [870, 92], [760, 28], [300, 60], [1150, 180], [578, 214], [886, 176]].map(([x, y], i) =>
     `<path class="glint" style="--d:${(7 + i * 1.4).toFixed(1)}s;animation-delay:-${(i * 2.3).toFixed(1)}s" d="M${x} ${y - 10} L${x + 2.2} ${y - 2.2} L${x + 10} ${y} L${x + 2.2} ${y + 2.2} L${x} ${y + 10} L${x - 2.2} ${y + 2.2} L${x - 10} ${y} L${x - 2.2} ${y - 2.2}Z" fill="#fff8de"/>`).join('');
-  const moon = `<g transform="translate(565 118)"><mask id="moonCut"><circle r="22" fill="#fff"/><circle cx="-9" cy="-7" r="20" fill="#000"/></mask><circle r="22" fill="#f6efd8" mask="url(#moonCut)"/></g>`;
+  // the moon keeps clear of the name now that the name stands where the logo was (wider): on a phone up in the top left
+  // corner above "എ", elsewhere to the left of the name
+  const moon = `<g transform="translate(${NARROW ? '548 40' : '455 112'})"><mask id="moonCut"><circle r="22" fill="#fff"/><circle cx="-9" cy="-7" r="20" fill="#000"/></mask><circle r="22" fill="#f6efd8" mask="url(#moonCut)"/></g>`;
   const birds = [[852, 170, .8, -6], [902, 152, .62, 4], [816, 198, .55, -2], [930, 184, .5, 8], [875, 208, .42, 3]].map(b => bird(...b)).join('');
 
   document.querySelector('.hero .sky').innerHTML =
@@ -823,7 +809,7 @@ main { position: relative; z-index: 0; }
     const p = Math.min(1, Math.abs(dx) / (w * .6)), q = Math.min(1, dx / (w * .8));
     cards.forEach((c, k) => {
       const d = k - i;
-      // the top card lies above the people behind it (z n + 3) and the cards under it lie below them
+      // the top card lies above the cards under it, and the gone ones above them all
       let t, o = 1, z = d === 0 ? n + 5 : n - Math.abs(d);
       if (d < 0) {
         // gone cards wait out of sight on the left; the last one fades back in as it is pulled back
@@ -883,44 +869,6 @@ main { position: relative; z-index: 0; }
   stack.addEventListener('dragstart', e => e.preventDefault());
   addEventListener('resize', () => { w = cards[0].offsetWidth; layout(); });
   layout();
-
-  // the people behind the top story, drawn from the reels (tools\chars.html): each is a short moving loop
-  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  // the fish-seller father waving, the schoolboy walking, Geetha teacher talking
-  const people = ['father', 'boy', 'teacher'].map(name => {
-    const img = new Image();
-    img.className = 'actor'; img.alt = ''; img.decoding = 'async'; img.src = `char-${name}.webp`;
-    img.style.zIndex = n + 3;
-    stack.appendChild(img);
-    return { img, busy: false };
-  });
-  // where they come out: three heights on each side, all in the upper half of the pile that a phone shows first
-  const spots = [-1, 1].flatMap(side => [4, 22, 40].map(top => ({ side, top })));
-  let seen = false, lastSpot = -1, timer = 0;
-  const later = ms => { clearTimeout(timer); timer = setTimeout(act, ms); };
-  const act = () => {
-    const free = people.filter(p => !p.busy);
-    if (!seen || stack.classList.contains('dragging') || !free.length) return later(1500);
-    const p = free[Math.floor(Math.random() * free.length)];
-    let k; do { k = Math.floor(Math.random() * spots.length); } while (k === lastSpot);
-    lastSpot = k;
-    const s = spots[k], full = Math.random() < .5, im = p.img, flip = s.side > 0 ? ' scaleX(-1)' : '';
-    im.style.left = s.side > 0 ? 'auto' : '0'; im.style.right = s.side > 0 ? '0' : 'auto';
-    im.style.top = s.top + '%';
-    const hid = `translateX(0)${flip}`;
-    const out = full ? `translateX(calc(${s.side} * (100% + 8px)))${flip}` : `translateX(${s.side * 58}%) rotate(${s.side * 7}deg)${flip}`;
-    const sway = full ? `translateX(calc(${s.side} * (100% + 8px))) translateY(-4px)${flip}` : `translateX(${s.side * 52}%) rotate(${s.side * 4}deg)${flip}`;
-    p.busy = true;
-    const run = im.animate([
-      { transform: hid, opacity: 1 }, { transform: out, opacity: 1, offset: .2 }, { transform: sway, opacity: 1, offset: .5 },
-      { transform: out, opacity: 1, offset: .8 }, { transform: hid, opacity: 1, offset: .99 }, { transform: hid, opacity: 0 }
-    ], { duration: full ? 5200 : 3400, easing: 'ease-in-out' });
-    run.onfinish = run.oncancel = () => { p.busy = false; };
-    later(full ? 3600 : 2600 + Math.random() * 1600);
-  };
-  if ('IntersectionObserver' in window) new IntersectionObserver(([e]) => { seen = e.isIntersecting; }).observe(stack);
-  else seen = true;
-  later(1200);
 })();
 </script>
 
@@ -951,7 +899,8 @@ main { position: relative; z-index: 0; }
     const at = sel => { const b = document.querySelector(sel).getBoundingClientRect(); return { top: b.top - mt, bottom: b.bottom - mt, left: b.left, right: b.right }; };
     const head = at('.stories .sec-head'), pile = at('.stories .grid'), box = at('.about-box');
     const narrow = W < 700, step = narrow ? 120 : 170;
-    const yA = head.top - 34, yP = pile.top + (pile.bottom - pile.top) * .55, yR = box.top - 46, yC = box.bottom + 150;
+    // the bund keeps clear of the footer's fade (the gaps were made smaller, the user, 2026-11-24: "ഗ്യാപ്പ് ചെറുതായിട്ടൊന്ന് കുറക്കുക")
+    const yA = head.top - 34, yP = pile.top + (pile.bottom - pile.top) * .55, yR = box.top - 46, yC = Math.min(box.bottom + 150, H - 52);
     let s = '';
     // the ground, from the paddy at the foot of the top village down to the footer's night
     s += `<defs><linearGradient id="landG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${P.paddy}"/><stop offset=".35" stop-color="#3e5a48"/><stop offset=".8" stop-color="#2c463a"/><stop offset="1" stop-color="#1c2a2c"/></linearGradient>
@@ -964,7 +913,7 @@ main { position: relative; z-index: 0; }
     s += `<path d="M${cx - 18} -2 C${cx - 30} ${yA * .35} ${cx + 40} ${yA * .55} ${cx + 6} ${yA - 10} L${cx + 46} ${yA - 10} C${cx + 74} ${yA * .55} ${cx + 4} ${yA * .35} ${cx + 18} -2Z" fill="${DIRT}"/>`;
     // lane A: palms and huts beyond it, the lane, bushes in front
     for (let x = step * .4, i = 0; x < W + 40; x += step, i++) {
-      s += i % 2 ? house(x, yA - 30, narrow ? 54 : 70, i % 4 === 1) : tree(x, yA - 24, narrow ? 92 : 120, i % 4 === 2);
+      s += i % 2 ? house(x, yA - 30, narrow ? 54 : 70, i % 4 === 1) : tree(x, yA - 24, Math.min(narrow ? 92 : 120, (yA - 28) / 1.56), i % 4 === 2); // fronds reach about half a trunk above it
     }
     s += `<path d="M-20 ${yA - 8} Q${W * .3} ${yA - 16} ${W * .55} ${yA - 8} T${W + 20} ${yA - 6} V${yA + 10} Q${W * .5} ${yA + 4} -20 ${yA + 12}Z" fill="${DIRT}"/>`;
     for (let x = step * .9, i = 0; x < W; x += step * 1.3, i++) s += bush(x, yA + 40, narrow ? .8 : 1, GRASS[i % 3]);
@@ -981,7 +930,7 @@ main { position: relative; z-index: 0; }
     // the paddy bund below "about"
     s += `<path d="M-20 ${yC - 8} Q${W / 2} ${yC - 20} ${W + 20} ${yC - 8} V${yC + 8} Q${W / 2} ${yC - 4} -20 ${yC + 8}Z" fill="#7d6a52"/>`;
     for (let x = step * .3, i = 0; x < W + 40; x += step * 1.2, i++) s += tree(x, yC - 26, narrow ? 96 : 126, i % 2);
-    s += `<rect y="${H - 90}" width="${W}" height="90" fill="url(#landEnd)"/>`;
+    s += `<rect y="${H - 40}" width="${W}" height="40" fill="url(#landEnd)"/>`;
     svg.setAttribute('width', W); svg.setAttribute('height', H); svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
     svg.innerHTML = s;
     lanes = [{ y: yA, kind: 'lane' }, { y: yP, kind: 'lane' }, { y: yR, kind: 'road' }, { y: yC, kind: 'lane' }].map(l => Object.assign(l, { busy: 0, next: 0, last: '' }));
