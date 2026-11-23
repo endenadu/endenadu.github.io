@@ -67,8 +67,17 @@ p { margin: 0; }
 .hero .sky, .hero .village { position: absolute; left: 0; width: 100%; z-index: -1; pointer-events: none; }
 .hero .sky { top: 0; height: 100%; }
 .hero .village { bottom: 0; height: var(--band); }
-.tw { animation: tw 4.5s ease-in-out infinite; }
-@keyframes tw { 0%, 100% { opacity: .95; } 50% { opacity: .35; } }
+/* the top moves (the user, 2026-11-23): every star twinkles in its own rhythm and a few glint now and then, a flock crosses
+   the sky (the palms, clouds and lamps move in the script below); all of it rests while the top is out of view */
+.tw { transform-box: fill-box; transform-origin: center; animation: tw var(--d, 4s) ease-in-out infinite; }
+@keyframes tw { 0%, 100% { opacity: .95; transform: scale(1); } 50% { opacity: .2; transform: scale(.55); } }
+.glint { transform-box: fill-box; transform-origin: center; opacity: 0; animation: glint var(--d, 9s) ease-in-out infinite; }
+@keyframes glint { 0%, 72%, 100% { opacity: 0; transform: scale(.2) rotate(0deg); } 81% { opacity: 1; transform: scale(1) rotate(30deg); } 90% { opacity: 0; transform: scale(.35) rotate(55deg); } }
+.flock { position: absolute; left: 0; top: 15%; width: clamp(160px, 14vw, 200px); height: auto; aspect-ratio: 155 / 85; z-index: -1; pointer-events: none; animation: fly 30s linear infinite; }
+@keyframes fly { 0% { transform: translate(-100%, 10px); } 50% { transform: translate(calc(50vw - 50%), -8px); } 100% { transform: translate(100vw, 4px); } }
+.flock.two { top: 3%; width: clamp(84px, 7vw, 112px); aspect-ratio: 84 / 42; animation-name: fly-back; }
+@keyframes fly-back { 0% { transform: translate(100vw, 0); } 50% { transform: translate(calc(50vw - 50%), 6px); } 100% { transform: translate(-100%, -4px); } }
+.hero.still .tw, .hero.still .glint, .hero.still .flock { animation-play-state: paused; }
 
 .logo {
   width: 140px; height: 140px; margin: 0 auto 18px; border-radius: 50%;
@@ -209,7 +218,8 @@ h1 .b { color: var(--gold); }
   .about-box { padding: 40px 48px 44px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .tw { animation: none; }
+  .tw, .glint { animation: none; }
+  .glint { display: none; }
   .watch-row a { transition: none; }
 }
 </style>
@@ -250,7 +260,74 @@ h1 .b { color: var(--gold); }
       <!-- Links come from the ende.nadu reels chat after each posting (the user, 2026-11-09). Until a story's own Facebook or YouTube
            video is up, its tile opens the page or the channel. Newest story first (the user, 2026-11-08). -->
 
-      <!-- 12: the newest story on the site, posted on Instagram straight after 11. Its Instagram link had not come yet (2026-11-19),
+      <!-- 16: the newest story on the site, the 15th reel on Instagram, straight after 14 (its files are numbered 16).
+           Only its YouTube Short had come (2026-11-23), so the cover opens the Short, the Instagram tile the profile and the Facebook tile the page. -->
+      <article class="card">
+        <a class="cover" href="https://www.youtube.com/shorts/E9wwKSqK1vw" target="_blank" rel="noopener" aria-label="നാരങ്ങ: YouTube-ൽ കാണൂ">
+          <img src="cover-16.jpg" width="720" height="960" alt="നാരങ്ങ എന്ന കഥയുടെ കവർ" decoding="async">
+          <span class="dur"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12.5-7.5z" fill="currentColor"/></svg>1:34</span>
+        </a>
+        <div class="body">
+          <p class="new">പുതിയ കഥ</p>
+          <h3>നാരങ്ങ</h3>
+          <p class="line">പത്താം ക്ലാസ്സിലെ അവസാന ദിവസം അഞ്ജു എന്റെ ഓട്ടോഗ്രാഫിൽ ഒരു കുഞ്ഞു നാരങ്ങ മാത്രം വരച്ചു. അതിനു താഴെ ശരിക്കും എന്താണ് എഴുതിയിരുന്നതെന്ന് വായിക്കാൻ എനിക്ക് എട്ടു കൊല്ലവും ഒരു മെഴുകുതിരിയും വേണ്ടിവന്നു.</p>
+          <p class="en" lang="en">On the last day of school she drew a little lemon in my autograph book. It took me eight years and a candle to read what she had really written.</p>
+          <div class="watch">
+            <p class="watch-label">ഈ കഥ കാണാൻ</p>
+            <div class="watch-row">
+              <a href="https://www.instagram.com/ende.nadu/" target="_blank" rel="noopener" aria-label="നാരങ്ങ: Instagram-ൽ കാണൂ"><span class="ic ig"><svg aria-hidden="true"><use href="#i-ig"/></svg></span>Instagram</a>
+              <a href="https://www.facebook.com/ende.nadu" target="_blank" rel="noopener" aria-label="നാരങ്ങ: Facebook-ൽ കാണൂ"><span class="ic fb"><svg aria-hidden="true"><use href="#i-fb"/></svg></span>Facebook</a>
+              <a href="https://www.youtube.com/shorts/E9wwKSqK1vw" target="_blank" rel="noopener" aria-label="നാരങ്ങ: YouTube-ൽ കാണൂ"><span class="ic yt"><svg aria-hidden="true"><use href="#i-yt"/></svg></span>YouTube</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 14: the 14th reel on Instagram, straight after 13.
+           Only its YouTube Short had come (2026-11-23), so the cover opens the Short, the Instagram tile the profile and the Facebook tile the page. -->
+      <article class="card">
+        <a class="cover" href="https://www.youtube.com/shorts/fNqIsdcDezU" target="_blank" rel="noopener" aria-label="നറുക്ക്: YouTube-ൽ കാണൂ">
+          <img src="cover-14.jpg" width="720" height="960" alt="നറുക്ക് എന്ന കഥയുടെ കവർ" decoding="async">
+          <span class="dur"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12.5-7.5z" fill="currentColor"/></svg>1:34</span>
+        </a>
+        <div class="body">
+          <h3>നറുക്ക്</h3>
+          <p class="line">മൂന്നു കൊല്ലം തുടർച്ചയായി ക്ലാസ്സിലെ നറുക്കെടുപ്പിൽ പുതിയ ബാഗും കുടയും കിട്ടിയത് എനിക്കായിരുന്നു. ഗീത ടീച്ചർ റിട്ടയർ ചെയ്ത ദിവസം ആ പഴയ ടിൻ എന്റെ കയ്യിൽ തന്നപ്പോഴാണ് ഞാൻ അതിന്റെ രഹസ്യം അറിഞ്ഞത്.</p>
+          <p class="en" lang="en">Three years in a row, I won my teacher's class draw. On the day she retired, she handed me the old tin, and I finally learned its secret.</p>
+          <div class="watch">
+            <p class="watch-label">ഈ കഥ കാണാൻ</p>
+            <div class="watch-row">
+              <a href="https://www.instagram.com/ende.nadu/" target="_blank" rel="noopener" aria-label="നറുക്ക്: Instagram-ൽ കാണൂ"><span class="ic ig"><svg aria-hidden="true"><use href="#i-ig"/></svg></span>Instagram</a>
+              <a href="https://www.facebook.com/ende.nadu" target="_blank" rel="noopener" aria-label="നറുക്ക്: Facebook-ൽ കാണൂ"><span class="ic fb"><svg aria-hidden="true"><use href="#i-fb"/></svg></span>Facebook</a>
+              <a href="https://www.youtube.com/shorts/fNqIsdcDezU" target="_blank" rel="noopener" aria-label="നറുക്ക്: YouTube-ൽ കാണൂ"><span class="ic yt"><svg aria-hidden="true"><use href="#i-yt"/></svg></span>YouTube</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 13: the 13th reel on Instagram, between 12 and 14. Added on 2026-11-23 on the user's "ചേർക്കൂ", from the YouTube Short in the
+           reels chat's own list (YouTube\uploads.md); the cover opens the Short, the Instagram tile the profile and the Facebook tile the page. -->
+      <article class="card">
+        <a class="cover" href="https://www.youtube.com/shorts/vJ-Te-6OFuA" target="_blank" rel="noopener" aria-label="ആദ്യത്തെ നോമ്പ്: YouTube-ൽ കാണൂ">
+          <img src="cover-13.jpg" width="720" height="960" alt="ആദ്യത്തെ നോമ്പ് എന്ന കഥയുടെ കവർ" decoding="async">
+          <span class="dur"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12.5-7.5z" fill="currentColor"/></svg>1:01</span>
+        </a>
+        <div class="body">
+          <h3>ആദ്യത്തെ നോമ്പ്</h3>
+          <p class="line">എട്ടാം വയസ്സിലെ ആദ്യത്തെ മുഴുവൻ നോമ്പിന് ഉച്ചയ്ക്ക് ആരും കാണാതെ കിണറ്റിൻകരയിൽ നിന്ന് രണ്ടു കവിൾ വെള്ളം കുടിച്ചു. എന്നിട്ടും ഉമ്മൂമ്മ ആദ്യത്തെ ഈത്തപ്പഴം എനിക്കു തന്നതെന്തിനാ?</p>
+          <p class="en" lang="en">On my first full fast, at eight, I sneaked two sips of water at the well. Grandma still gave me the first date at iftar. Last Ramadan, I found out why.</p>
+          <div class="watch">
+            <p class="watch-label">ഈ കഥ കാണാൻ</p>
+            <div class="watch-row">
+              <a href="https://www.instagram.com/ende.nadu/" target="_blank" rel="noopener" aria-label="ആദ്യത്തെ നോമ്പ്: Instagram-ൽ കാണൂ"><span class="ic ig"><svg aria-hidden="true"><use href="#i-ig"/></svg></span>Instagram</a>
+              <a href="https://www.facebook.com/ende.nadu" target="_blank" rel="noopener" aria-label="ആദ്യത്തെ നോമ്പ്: Facebook-ൽ കാണൂ"><span class="ic fb"><svg aria-hidden="true"><use href="#i-fb"/></svg></span>Facebook</a>
+              <a href="https://www.youtube.com/shorts/vJ-Te-6OFuA" target="_blank" rel="noopener" aria-label="ആദ്യത്തെ നോമ്പ്: YouTube-ൽ കാണൂ"><span class="ic yt"><svg aria-hidden="true"><use href="#i-yt"/></svg></span>YouTube</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 12: posted on Instagram straight after 11. Its Instagram link had not come yet (2026-11-19),
            so until it does the cover opens its YouTube Short and the Instagram tile opens the profile (the user: "ചേർക്കൂ"). -->
       <article class="card">
         <a class="cover" href="https://www.youtube.com/shorts/8SQfQDXbqH4" target="_blank" rel="noopener" aria-label="ടിക്കറ്റിന്റെ പിറകിൽ: YouTube-ൽ കാണൂ">
@@ -258,7 +335,6 @@ h1 .b { color: var(--gold); }
           <span class="dur"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12.5-7.5z" fill="currentColor"/></svg>1:59</span>
         </a>
         <div class="body">
-          <p class="new">പുതിയ കഥ</p>
           <h3>ടിക്കറ്റിന്റെ പിറകിൽ</h3>
           <p class="line">രണ്ടു കൊല്ലം ആ ബസ് കണ്ടക്ടർ അവളുടെ കയ്യിൽ നിന്ന് ടിക്കറ്റിന് പൈസ വാങ്ങിയില്ല. അൻപതാം വിവാഹവാർഷികത്തിന് അമ്മൂമ്മ ആ പഴയ തകരപ്പെട്ടി തുറന്നപ്പോൾ എന്താണ് പുറത്തുവന്നത്?</p>
           <p class="en" lang="en">For two years a bus conductor never took her fare. Fifty years later, she opened an old tin box full of tickets.</p>
@@ -535,57 +611,80 @@ h1 .b { color: var(--gold); }
 <script>
 // The sky and the village are drawn here in the logo's own shapes and colours (Brand\profile4.html):
 // a dusk sky with stars coming out, a thin moon and birds flying home, then hills, palms, lamp-lit huts and a path.
+// Since 2026-11-23 it moves (the user: the birds fly, the stars twinkle, the palms sway): a flock crosses the sky flapping,
+// the palms and their fronds sway, the clouds drift and the hut lamps flicker. With "reduce motion" set on the device
+// it stays still, and it rests while the top of the page is out of view.
 (() => {
+  const MOVE = !(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+  const ease = 'calcMode="spline" keyTimes="0;.5;1" keySplines=".45 0 .55 1;.45 0 .55 1" repeatCount="indefinite"';
+  let hutN = 0, palmN = 0, cloudN = 0;
+  // a phone shows only the middle of the sky and of the village, so it gets a few more clouds there
+  const NARROW = innerWidth < 700;
   const P = {
     hillFar: '#7d8b80', hillMid: '#4f6b5a', hillNear: '#3a5347', path: '#ad7b5e',
     frond: ['#2e4a3e', '#38584a', '#436553'], trunk: '#5a4636', paddy: '#4c6650', paddyLine: '#6c8a6c',
     hut: { wall: '#e2d2b6', base: '#7a5a46', door: '#4a3428', window: '#ffd27a', roof: '#a3814f', line: '#6b5234' }
   };
   const hut = (x, y, s, flip) => {
-    const f = flip ? -1 : 1, p = P.hut;
+    const f = flip ? -1 : 1, p = P.hut, i = hutN++;
     return `<g transform="translate(${x} ${y}) scale(${s * f} ${s})">
       <rect x="-52" y="-6" width="104" height="60" fill="${p.wall}"/>
       <rect x="-52" y="42" width="104" height="12" fill="${p.base}"/>
       <rect x="-14" y="8" width="28" height="46" fill="${p.door}"/>
-      <rect x="24" y="8" width="20" height="20" fill="${p.window}"/>
+      <rect x="24" y="8" width="20" height="20" fill="${p.window}">${MOVE ? `<animate attributeName="opacity" values="1;.68;.95;.78;1" dur="${(3.2 + (i % 5) * .7).toFixed(1)}s" begin="-${(i * 1.3).toFixed(1)}s" repeatCount="indefinite"/>` : ''}</rect>
       <path d="M-80 4 L-46 -50 Q0 -56 46 -50 L80 4 Q0 14 -80 4Z" fill="${p.roof}"/>
       <path d="M-46 -50 Q0 -56 46 -50" fill="none" stroke="${p.line}" stroke-width="7" stroke-linecap="round"/>
       <path d="M-62 -4 L-38 -44 M-36 2 L-20 -46 M-10 6 L-4 -48 M14 6 L8 -48 M38 2 L22 -46 M62 -4 L40 -44" fill="none" stroke="${p.line}" stroke-width="3.5" stroke-linecap="round"/>
     </g>`;
   };
+  // each palm sways from its foot, and its fronds a little more from the crown, every palm in its own time
+  const sway = (deg, cx, cy, dur, begin) => MOVE ? `<animateTransform attributeName="transform" type="rotate" values="${-deg} ${cx} ${cy};${deg} ${cx} ${cy};${-deg} ${cx} ${cy}" ${ease} dur="${dur}s" begin="${begin}s"/>` : '';
   const palm = (x, y, s, flip) => {
-    const f = flip ? -1 : 1;
+    const f = flip ? -1 : 1, n = palmN++, b = -((n * 1.9) % 6).toFixed(1);
     const fronds = [-160, -128, -98, -66, -34, -6, 22].map((a, i) =>
       `<g transform="rotate(${a})"><path d="M0 0 C80 -40 190 -40 290 12 C190 -6 90 -2 0 0Z" fill="${P.frond[i % 3]}"/></g>`).join('');
-    return `<g transform="translate(${x} ${y}) scale(${s * f} ${s})">
-      <path d="M-14 560 C-6 380 8 190 -8 0 L12 0 C26 190 18 380 16 560Z" fill="${P.trunk}"/>${fronds}</g>`;
+    return `<g transform="translate(${x} ${y}) scale(${s * f} ${s})"><g>${sway(1.5, 0, 560, (6.4 + (n % 3) * .9).toFixed(1), b)}
+      <path d="M-14 560 C-6 380 8 190 -8 0 L12 0 C26 190 18 380 16 560Z" fill="${P.trunk}"/><g>${sway(4, 0, 0, (4.3 + (n % 4) * .55).toFixed(2), b)}${fronds}</g></g></g>`;
   };
-  const cloud = (x, y, s, body, light) => `<g transform="translate(${x} ${y}) scale(${s})">
+  // every cloud drifts away from the middle toward its own side, those on the left to the left and those on the right
+  // to the right, fading in where it starts and out where it ends, then begins again, each in its own time (the user, 2026-11-24)
+  const cloud = (x, y, s, body, light) => {
+    const n = cloudN++, dir = x < 720 ? -1 : 1, D = 200, T = +(22 + (n % 4) * 1.6).toFixed(1), b = -(T * (.3 + (n % 3) * .15)).toFixed(1);
+    const drift = MOVE ? `<animateTransform attributeName="transform" type="translate" values="${-dir * D / 2} 0;${dir * D / 2} 0" dur="${T}s" begin="${b}s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.15;.8;1" dur="${T}s" begin="${b}s" repeatCount="indefinite"/>` : '';
+    return `<g>${drift}<g transform="translate(${x} ${y}) scale(${s})">
     <path d="M-150 34 Q-176 34 -176 10 Q-176 -14 -146 -14 Q-140 -48 -96 -46 Q-76 -86 -26 -78 Q18 -106 56 -70 Q104 -78 118 -36 Q168 -36 170 6 Q170 34 142 34Z" fill="${body}"/>
     <path d="M-122 -18 Q-110 -40 -84 -36 M-36 -62 Q-6 -82 26 -60 M70 -52 Q96 -52 104 -28" fill="none" stroke="${light}" stroke-width="9" stroke-linecap="round"/>
-    <path d="M-150 34 Q0 16 142 34Z" fill="${light}" opacity=".35"/></g>`;
+    <path d="M-150 34 Q0 16 142 34Z" fill="${light}" opacity=".35"/></g></g>`; };
   const bird = (x, y, s, r) => `<path d="M${x - 24 * s} ${y + 3 * s} Q${x - 12 * s} ${y - 13 * s} ${x} ${y} Q${x + 12 * s} ${y - 13 * s} ${x + 24 * s} ${y + 3 * s}" fill="none" stroke="#262848" stroke-width="${4.6 * s}" stroke-linecap="round" stroke-linejoin="round" transform="rotate(${r} ${x} ${y})"/>`;
 
   const HIGH = ['#5c5d8a', '#9a95bd'], MID = ['#8f7a9c', '#d7b2ad'], LOW = ['#cf9d92', '#f6d8bd'];
   const starAt = [[60, 40, 2.4], [180, 150, 1.8], [300, 60, 2.2], [420, 210, 1.6], [470, 95, 2.6], [540, 36, 1.8], [610, 250, 1.5],
     [655, 175, 2.1], [760, 28, 1.7], [790, 262, 1.6], [870, 92, 2.3], [990, 150, 1.8], [1010, 40, 2.4], [1080, 230, 1.6],
     [1150, 180, 2.2], [1240, 30, 1.8], [1300, 140, 2.5], [1390, 70, 1.9], [1360, 250, 1.6], [120, 260, 1.7], [250, 330, 1.5],
-    [1220, 320, 1.5], [940, 290, 1.6], [520, 300, 1.6]];
+    [1220, 320, 1.5], [940, 290, 1.6], [520, 300, 1.6],
+    // more in the middle of the sky, the part a phone shows (the user, 2026-11-24)
+    [575, 80, 1.9], [700, 14, 1.7], [820, 52, 2.1], [845, 165, 1.6], [890, 236, 1.8], [552, 168, 1.5], [886, 22, 1.6],
+    [578, 214, 1.7], [548, 330, 1.5], [895, 330, 1.6]];
+  // every star twinkles in its own rhythm; a few glint now and then as a small four-pointed spark
   const stars = starAt.map(([x, y, r], i) =>
-    `<circle class="tw" style="animation-delay:${((i * 0.37) % 4).toFixed(2)}s" cx="${x}" cy="${y}" r="${r}" fill="#fff4d0"/>`).join('');
+    `<circle class="tw" style="--d:${(2.6 + (i * .73) % 3).toFixed(2)}s;animation-delay:-${((i * 1.37) % 5).toFixed(2)}s" cx="${x}" cy="${y}" r="${r}" fill="#fff4d0"/>`).join('');
+  const glints = [[655, 175], [870, 92], [760, 28], [300, 60], [1150, 180], [578, 214], [886, 176]].map(([x, y], i) =>
+    `<path class="glint" style="--d:${(7 + i * 1.4).toFixed(1)}s;animation-delay:-${(i * 2.3).toFixed(1)}s" d="M${x} ${y - 10} L${x + 2.2} ${y - 2.2} L${x + 10} ${y} L${x + 2.2} ${y + 2.2} L${x} ${y + 10} L${x - 2.2} ${y + 2.2} L${x - 10} ${y} L${x - 2.2} ${y - 2.2}Z" fill="#fff8de"/>`).join('');
   const moon = `<g transform="translate(565 118)"><mask id="moonCut"><circle r="22" fill="#fff"/><circle cx="-9" cy="-7" r="20" fill="#000"/></mask><circle r="22" fill="#f6efd8" mask="url(#moonCut)"/></g>`;
   const birds = [[852, 170, .8, -6], [902, 152, .62, 4], [816, 198, .55, -2], [930, 184, .5, 8], [875, 208, .42, 3]].map(b => bird(...b)).join('');
 
   document.querySelector('.hero .sky').innerHTML =
     stars + moon + cloud(240, 110, .55, ...HIGH) + cloud(1200, 80, .6, ...HIGH) + cloud(915, 40, .3, ...HIGH) +
-    cloud(160, 330, .5, ...MID) + cloud(1290, 300, .5, ...MID) + birds;
+    cloud(160, 330, .5, ...MID) + cloud(1290, 300, .5, ...MID) +
+    (NARROW ? cloud(552, 262, .36, ...MID) + cloud(884, 300, .32, ...MID) : '') +
+    glints + (MOVE ? '' : birds);
 
   document.querySelector('.hero .village').innerHTML = `
     <defs>
       <linearGradient id="toNight" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1f2546" stop-opacity="0"/><stop offset=".8" stop-color="#1f2546"/></linearGradient>
     </defs>
     <circle cx="720" cy="118" r="44" fill="#fbe6b8"/>
-    ${cloud(300, 66, .5, ...LOW)}${cloud(1150, 58, .55, ...LOW)}${cloud(905, 72, .26, ...LOW)}
+    ${cloud(300, 66, .5, ...LOW)}${cloud(1150, 58, .55, ...LOW)}${cloud(905, 72, .26, ...LOW)}${NARROW ? cloud(560, 64, .42, ...LOW) + cloud(790, 40, .3, ...LOW) : ''}
     <path d="M-20 118 Q180 82 400 108 T820 100 T1240 104 T1660 98 V300 H-20Z" fill="${P.hillFar}"/>
     <path d="M-20 118 Q180 82 400 108 T820 100 T1240 104 T1660 98" fill="none" stroke="#f6d8b0" stroke-width="3" opacity=".45"/>
     ${palm(170, 78, .3)}${palm(1290, 74, .3, 1)}${palm(505, 92, .25)}${palm(950, 86, .26, 1)}${palm(380, 112, .19)}${palm(1085, 106, .19, 1)}
@@ -598,6 +697,42 @@ h1 .b { color: var(--gold); }
     <path d="M-20 284 Q720 262 1460 284 V300 H-20Z" fill="${P.paddy}"/>
     <path d="M-20 290 Q720 270 1460 290" fill="none" stroke="${P.paddyLine}" stroke-width="2.5"/>
     <rect x="-20" y="258" width="1480" height="44" fill="url(#toNight)"/>`;
+
+  if (!MOVE) return;
+  // two flocks, each bird flapping and bobbing in its own time: the five from the drawing cross the sky behind the logo,
+  // and three smaller ones (2026-11-24) cross higher up the other way; both come round again
+  const wing = (x, y, s, [tip, mid], reach) => `M${x - reach * s} ${y + tip * s} Q${x - 12 * s} ${y + mid * s} ${x} ${y} Q${x + 12 * s} ${y + mid * s} ${x + reach * s} ${y + tip * s}`;
+  const hero = document.querySelector('.hero');
+  const makeFlock = (birds, box, cls) => {
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('class', cls); svg.setAttribute('viewBox', box); svg.setAttribute('aria-hidden', 'true');
+    svg.innerHTML = birds.map(([x, y, s, r], i) => {
+      const up = wing(x, y, s, [3, -13], 24), level = wing(x, y, s, [1, -5], 25), down = wing(x, y, s, [10, 4], 22);
+      return `<g transform="rotate(${r} ${x} ${y})"><path d="${up}" fill="none" stroke="#262848" stroke-width="${4.6 * s}" stroke-linecap="round" stroke-linejoin="round"><animate attributeName="d" values="${up};${level};${down};${level};${up}" keyTimes="0;.25;.5;.75;1" dur="${(.82 + (i % 3) * .13).toFixed(2)}s" begin="-${(i * .21).toFixed(2)}s" repeatCount="indefinite"/></path><animateTransform attributeName="transform" type="translate" additive="sum" values="0 0;0 ${(-5 * s).toFixed(1)};0 0" ${ease} dur="${(2.2 + i * .35).toFixed(2)}s"/></g>`;
+    }).join('');
+    hero.appendChild(svg);
+    return svg;
+  };
+  const flock = makeFlock([[852, 170, .8, -6], [902, 152, .62, 4], [816, 198, .55, -2], [930, 184, .5, 8], [875, 208, .42, 3]], '795 135 155 85', 'flock');
+  const flock2 = makeFlock([[860, 150, .5, 3], [890, 140, .42, -4], [835, 162, .38, 6]], '822 128 84 42', 'flock two');
+  // one crossing takes longer on a wide screen, so the birds keep the same easy speed; on opening they are already on their way
+  let paced = 0;
+  const pace = () => {
+    if (Math.abs(innerWidth - paced) < 60) return;
+    paced = innerWidth;
+    const d = Math.max(22, Math.min(60, (innerWidth + 200) / 26));
+    flock.style.animationDuration = d.toFixed(1) + 's';
+    flock.style.animationDelay = (-d * .2).toFixed(1) + 's';
+    flock2.style.animationDuration = (d * 1.3).toFixed(1) + 's';
+    flock2.style.animationDelay = (-d * 1.3 * .35).toFixed(1) + 's';
+  };
+  pace(); addEventListener('resize', pace);
+  // everything rests while the top of the page is out of view
+  const svgs = [...hero.querySelectorAll('svg')];
+  if ('IntersectionObserver' in window) new IntersectionObserver(([e]) => {
+    hero.classList.toggle('still', !e.isIntersecting);
+    svgs.forEach(s => { if (s.pauseAnimations) { if (e.isIntersecting) s.unpauseAnimations(); else s.pauseAnimations(); } });
+  }).observe(hero);
 })();
 </script>
 </body>
