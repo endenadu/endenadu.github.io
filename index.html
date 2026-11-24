@@ -109,7 +109,7 @@ h1 img { width: min(68vw, 260px); height: auto; margin: 0 auto; filter: drop-sha
 }
 .btn svg { width: 21px; height: 21px; flex: none; margin-top: -2px; }
 .btn:active { transform: translateY(1px); }
-.btn:focus-visible, .cover:focus-visible, .watch-row a:focus-visible, .foot a:focus-visible { outline: 3px solid var(--cream); outline-offset: 3px; }
+.btn:focus-visible, .cover:focus-visible, .watch-row a:focus-visible, .pen a:focus-visible, .foot a:focus-visible { outline: 3px solid var(--cream); outline-offset: 3px; }
 
 /* ---------- section titles ---------- */
 .sec-head { max-width: 640px; margin: 0 auto 24px; text-align: center; }
@@ -242,12 +242,14 @@ main { position: relative; z-index: 0; }
 }
 .about-box .sec-head { margin-bottom: 18px; }
 .about-box p { margin-top: 12px; font-size: 18px; line-height: 1.85; color: var(--text-2); text-wrap: pretty; }
-.about-box .follow-line { margin-top: 26px; font-size: 16px; color: var(--muted); }
-.about-box .links { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 12px; }
-.btn.alt {
-  color: var(--cream); background: transparent; border: 2px solid rgba(251, 241, 220, .7);
-  box-shadow: none; padding: 12px 22px 10px;
-}
+/* at the foot of the writing Instagram, Facebook and YouTube as three marks drawn with the letters' own pen (same colour, same
+   line, round ends), in place of the "പുതിയ കഥകൾ ആദ്യം കാണാൻ" line and the two buttons (the user, 2026-11-24: "ആ പേപ്പറിൽ
+   എഴുതിയ എഴുത്തിന് അനുയോജ്യമായിട്ടുള്ള രൂപത്തിൽ നമ്മുടെ 3 പ്ലാറ്റ്ഫോമുകളുടെയും ലോഗോകൾ കൊടുക്കുക"); a touch opens that page */
+.pen { display: flex; justify-content: center; gap: 8px; margin: 15px 0 -10px; }
+.pen a { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 18px; color: var(--text-2); transition: color .15s, transform .15s; }
+.pen a:active { color: var(--gold); transform: translateY(1px); }
+@media (hover: hover) { .pen a:hover { color: var(--gold); } }
+.pen svg { width: 34px; height: 34px; fill: none; stroke: currentColor; stroke-width: 1.1; stroke-linecap: round; stroke-linejoin: round; }
 
 /* ---------- footer ---------- */
 .foot {
@@ -271,6 +273,7 @@ main { position: relative; z-index: 0; }
   .sub { font-size: 17px; }
   .sec-head h2 { font-size: 40px; }
   .about-box { padding: 40px 48px 44px; }
+  .pen { margin-bottom: -16px; }
   .follow { gap: 20px; }
   .follow .btn { width: 60px; height: 60px; }
   .follow .btn svg { width: 28px; height: 28px; }
@@ -290,6 +293,10 @@ main { position: relative; z-index: 0; }
   <symbol id="i-ig" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5.5" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="17.4" cy="6.6" r="1.2" fill="currentColor"/></symbol>
   <symbol id="i-fb" viewBox="0 0 24 24"><path d="M14 8.5V6.8c0-.8.5-1.3 1.4-1.3H17V2.3c-.6-.1-1.6-.2-2.6-.2-2.7 0-4.4 1.6-4.4 4.5v1.9H7.3v3.4H10V22h4V11.9h2.8l.4-3.4z" fill="currentColor"/></symbol>
   <symbol id="i-yt" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M6.5 5H17.5A4.5 4.5 0 0 1 22 9.5V14.5A4.5 4.5 0 0 1 17.5 19H6.5A4.5 4.5 0 0 1 2 14.5V9.5A4.5 4.5 0 0 1 6.5 5ZM10 8.8V15.2L15.4 12Z"/></symbol>
+  <!-- the same three in one thin line, for the foot of the "about" writing -->
+  <symbol id="p-ig" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5.4"/><circle cx="12" cy="12" r="4.3"/><circle cx="17" cy="7" r=".95" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="p-fb" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.4"/><path d="M15.6 7.9H14.4C13 7.9 12.2 8.7 12.2 10.1V21.3M9.2 13.2H15"/></symbol>
+  <symbol id="p-yt" viewBox="0 0 24 24"><rect x="2" y="4.9" width="20" height="14.2" rx="4.6"/><path d="M10.2 9.2V14.8L15 12Z" fill="currentColor"/></symbol>
 </svg>
 
 <header class="hero">
@@ -640,17 +647,11 @@ main { position: relative; z-index: 0; }
       <p>ചായക്കടയിലെ ബെഞ്ചിലും സ്കൂൾ ഗേറ്റിനു മുമ്പുള്ള വളവിലും ഗൾഫിലെ ഒരു ക്യൂവിലും ആരും പറയാതെ പോകുന്ന കഥകളുണ്ട്. ഒരച്ഛന്റെ മൗനം, ഒരു തയ്യൽക്കാരന്റെ നന്മ, ഒരു നാടിന്റെ സ്നേഹം.</p>
       <p>അങ്ങനെയുള്ള കഥകൾ വരച്ച ചിത്രങ്ങളിലൂടെ, പതിയെ, ഒന്നര മിനിറ്റിൽ പറയുകയാണ് എന്റെ നാട്.</p>
       <p>കണ്ടുകഴിയുമ്പോൾ ആരെയെങ്കിലും ഓർമ്മ വന്നാൽ, ആ കഥ അവർക്ക് അയച്ചുകൊടുക്കൂ.</p>
-      <p class="follow-line">പുതിയ കഥകൾ ആദ്യം കാണാൻ</p>
-      <div class="links">
-        <a class="btn" href="https://www.instagram.com/ende.nadu/" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.2" fill="currentColor" stroke="none"/></svg>
-          Instagram-ൽ ഫോളോ ചെയ്യൂ
-        </a>
-        <a class="btn alt" href="https://www.facebook.com/ende.nadu" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8.5V6.8c0-.8.5-1.3 1.4-1.3H17V2.3c-.6-.1-1.6-.2-2.6-.2-2.7 0-4.4 1.6-4.4 4.5v1.9H7.3v3.4H10V22h4V11.9h2.8l.4-3.4z" fill="currentColor"/></svg>
-          Facebook
-        </a>
-      </div>
+      <nav class="pen" aria-label="Instagram, Facebook, YouTube">
+        <a href="https://www.instagram.com/ende.nadu/" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><svg aria-hidden="true"><use href="#p-ig"/></svg></a>
+        <a href="https://www.facebook.com/ende.nadu" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook"><svg aria-hidden="true"><use href="#p-fb"/></svg></a>
+        <a href="https://www.youtube.com/@EndeNadu" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube"><svg aria-hidden="true"><use href="#p-yt"/></svg></a>
+      </nav>
     </div>
   </section>
 </main>
